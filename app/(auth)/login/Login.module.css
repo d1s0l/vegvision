@@ -1,0 +1,154 @@
+.loginMenu {
+    display: flex;
+    
+}
+
+.wrapper {
+    display: flex;
+    justify-content: end;
+}
+
+
+.container {
+    width: 45vw;
+    height: 100vh;
+    object-fit: cover;
+    background-image: url("/background.svg");
+    border-radius: 50px 0 0 50px;
+}
+
+.auth {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 55vw;
+}
+
+.auth h2 {
+    color: var(--black-green);
+    font-size: 48px;
+    font-weight: 600;
+    font-family: var(--font-inter);
+}
+
+.logo {
+    display: flex;
+
+    color: var(--black-green);
+    font-family: var(--font-sourceSerif);
+    font-size: 64px;
+    font-weight: 700;
+    gap: 10px;
+    margin-bottom: 6vh;
+    cursor: pointer;
+}
+
+
+
+
+.allboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.box label {
+    color: var(--black-green);
+    font-size: 16px;
+    font-weight: 500;
+}
+.input {
+    border-bottom: 1px solid var(--black-green);
+    color: var(--gray);
+    width: 100%;
+    height: 38px;
+    outline: none;
+    color: var(--gray);
+    font-size: 18px;
+    font-weight:500;
+}
+
+.checkboxWrapper {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    color: var(--black-green);
+    font-size: 18px;
+    font-weight: 300;
+    font-family: var(--font-inter);
+    margin-bottom: 45px;
+}
+
+.checkbox {
+    appearance: none;
+    position: relative;
+    width: 24px;
+    height: 24px;
+    border-radius: 8px;
+    border: 2px solid var(--black-green);
+    transition: 350ms;
+    cursor: pointer;
+}
+
+.checkbox:checked {
+    background: var(--check-green);
+    border: none;
+}
+
+.checkbox:checked::after {
+    content: "";
+    position: absolute;
+
+    width: 6px;
+    height: 12px;
+
+    border: solid var(--element);
+    border-width: 0 2px 2px 0;
+
+    transform: rotate(45deg);
+
+    left: 9px;
+    top: 4px;
+}
+
+.authButton{
+    width: 100%;
+    height: 50px;
+    background: var(--black-green);
+    border-radius: 50px;
+    font-family: var(--font-inter);
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.authButton:hover {
+    background-color: var(--check-green);
+    transition: background-color 0.2s ease-in 100ms
+}
+
+.regist {
+    display: flex;
+    align-items: center;
+
+    color: var(--light-gray);
+    font-family: var(--font-inter);
+    font-size: 16px;
+    gap:10px;
+}
+
+.regist a{
+    color: var(--black-green);
+    font-family: var(--font-inter);
+    font-weight: 700;
+}

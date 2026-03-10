@@ -1,0 +1,34 @@
+.how{
+    border-radius: 75px;
+    background: radial-gradient(at right top, #FEF7A5 0%, #889B60 10%, #31572D 29%);
+    padding: 78px 60px 78px 60px;
+
+}
+
+.how h1 {
+    font-size: 96px;
+    font-weight: 700;
+    font-family: var(--inter);
+    color: var(--gold);
+    margin-bottom: 32px;
+}
+
+.how p{
+    font-size: 48px;
+    font-weight: 300;
+    font-family: var(--inter);
+    color: var(--element);
+    margin-bottom: 32px;
+}
+
+.rectangle {
+    width: max-content;
+    height: 400px;
+    background: var(--gold);
+
+}
+
+.tochki {
+    background: var(--gold);
+    
+}
