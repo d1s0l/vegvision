@@ -4,8 +4,8 @@ import Image from "next/image"
 
 export function ButtonBack() {
     return(
-        <Link href="/" >
-            <div className={styles.back}>
+        <div className={styles.back}>
+            <Link href="/" >
                 <Image 
                     src="/arrow-left.svg"
                     alt="arrow left"
@@ -13,7 +13,7 @@ export function ButtonBack() {
                     height={34}
                     
                 />
-            </div>
-        </Link>
+            </Link>
+        </div>
     )
 }

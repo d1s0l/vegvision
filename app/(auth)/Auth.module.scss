@@ -1,13 +1,11 @@
 .loginMenu {
     display: flex;
-    
 }
 
 .wrapper {
     display: flex;
     justify-content: end;
 }
-
 
 .container {
     width: 45vw;
@@ -23,18 +21,17 @@
     justify-content: center;
     align-items: center;
     width: 55vw;
-}
 
-.auth h2 {
-    color: var(--black-green);
-    font-size: 48px;
-    font-weight: 600;
-    font-family: var(--font-inter);
+    h2 {
+        color: var(--black-green);
+        font-size: 48px;
+        font-weight: 600;
+        font-family: var(--font-inter);
+    }
 }
 
 .logo {
     display: flex;
-
     color: var(--black-green);
     font-family: var(--font-sourceSerif);
     font-size: 64px;
@@ -43,9 +40,6 @@
     margin-bottom: 6vh;
     cursor: pointer;
 }
-
-
-
 
 .allboxes {
     display: flex;
@@ -57,23 +51,22 @@
 .box {
     display: flex;
     flex-direction: column;
-    
+
+    label {
+        color: var(--black-green);
+        font-size: 16px;
+        font-weight: 500;
+    }
 }
 
-.box label {
-    color: var(--black-green);
-    font-size: 16px;
-    font-weight: 500;
-}
 .input {
     border-bottom: 1px solid var(--black-green);
-    color: var(--gray);
     width: 100%;
     height: 38px;
     outline: none;
     color: var(--gray);
     font-size: 18px;
-    font-weight:500;
+    font-weight: 500;
 }
 
 .checkboxWrapper {
@@ -97,30 +90,30 @@
     border: 2px solid var(--black-green);
     transition: 350ms ease-in-out;
     cursor: pointer;
+
+    &:checked {
+        background: var(--check-green);
+        border: none;
+
+        &::after {
+            content: "";
+            position: absolute;
+
+            width: 6px;
+            height: 12px;
+
+            border: solid var(--element);
+            border-width: 0 2px 2px 0;
+
+            transform: rotate(45deg);
+
+            left: 9px;
+            top: 4px;
+        }
+    }
 }
 
-.checkbox:checked {
-    background: var(--check-green);
-    border: none;
-}
-
-.checkbox:checked::after {
-    content: "";
-    position: absolute;
-
-    width: 6px;
-    height: 12px;
-
-    border: solid var(--element);
-    border-width: 0 2px 2px 0;
-
-    transform: rotate(45deg);
-
-    left: 9px;
-    top: 4px;
-}
-
-.authButton{
+.authButton {
     width: 100%;
     height: 50px;
     background: var(--black-green);
@@ -130,30 +123,29 @@
     font-weight: 300;
     margin-bottom: 20px;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out
-}
+    transition: background-color 0.3s ease-in-out;
 
-.authButton:hover {
-    background-color: var(--check-green);
+    &:hover {
+        background-color: var(--check-green);
+    }
 }
 
 .regist {
     display: flex;
     align-items: center;
-
     color: var(--light-gray);
     font-family: var(--font-inter);
     font-size: 16px;
-    gap:10px;
-}
+    gap: 10px;
 
-.regist a{
-    color: var(--black-green);
-    font-family: var(--font-inter);
-    font-weight: 700;
-    transition: color 0.3s ease-in-out;
-}
+    a {
+        color: var(--black-green);
+        font-family: var(--font-inter);
+        font-weight: 700;
+        transition: color 0.3s ease-in-out;
 
-.regist a{
-    color: var(--check-green);
+        &:hover {
+            color: var(--check-green);
+        }
+    }
 }

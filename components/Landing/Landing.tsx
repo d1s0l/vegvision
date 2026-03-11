@@ -1,5 +1,5 @@
 import Image from "next/image"
-import styles from "./Landing.module.css"
+import styles from "./Landing.module.scss"
 import { About } from "./About/About"
 import { HowWork } from "./HowWork/HowWork"
 import { WorkWithUs } from "./WorkWithUs/WorkWithUs"

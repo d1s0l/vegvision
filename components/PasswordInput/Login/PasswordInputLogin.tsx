@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react';
-import styles from "@/components/PasswordInput/PasswordInput.module.css"
+import styles from "@/components/PasswordInput/PasswordInput.module.scss"
 
 
 export function PasswordInputLogin() {

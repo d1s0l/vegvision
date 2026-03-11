@@ -1,5 +1,5 @@
 import Image from "next/image"
-import styles from "./Registration.module.css"
+import styles from "@/app/(auth)/Auth.module.scss"
 import Link from "next/link";
 import { ButtonBack } from "@/components/ButtonBack/Button";
 import { PasswordInputRegistraion } from "@/components/PasswordInput/Registration/PasswordInputRegisration";

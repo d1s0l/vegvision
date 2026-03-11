@@ -1,4 +1,4 @@
-import styles from "./InfoCard.module.css"
+import styles from "./InfoCard.module.scss"
 import { InfoCardItem } from "./InfoCardItem"
 import type { InfoCardProps } from "./InfoCard.types"
 

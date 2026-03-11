@@ -1,4 +1,4 @@
-import styles from "./HowWork.module.css"
+import styles from "./HowWork.module.scss"
 
 export function HowWork() {
     return(

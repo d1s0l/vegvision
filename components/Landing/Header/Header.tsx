@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import styles from "./Header.module.css"
+import styles from "./Header.module.scss"
 import Link from "next/link";
 
 export default function Header() {
