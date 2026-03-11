@@ -1,4 +1,3 @@
-/* Header.module.css */
 .header {
     margin-top: 40px;
     margin-inline: 60px;
@@ -13,6 +12,7 @@
     background: transparent;
     height: 60px;
     overflow: hidden;
+    
 }
 
 .side {
@@ -35,7 +35,6 @@
 }
 
 .button {
-    background: transparent;
     padding: 0 30px;
     color: white;
     font-size: 18px;
@@ -48,16 +47,21 @@
     border: 1px solid var(--element);
     border-radius: 50px;
 
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-
-    transition: background-color 0.3s ease;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(3px);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+    
+    transition: background 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 .button.active {
     background: var(--element);
     backdrop-filter: none;
-    color: black;
+    color: var(--dark-green);
     border-radius: 50px;
+}
+
+.button:hover {
+    background: var(--element);
+    color: var(--dark-green);
 }
