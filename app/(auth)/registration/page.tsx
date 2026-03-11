@@ -1,18 +1,19 @@
 import Image from "next/image"
-import styles from "./Login.module.css"
+import styles from "./Registration.module.css"
 import Link from "next/link";
 import { ButtonBack } from "@/components/ButtonBack/Button";
-import { PasswordInputLogin } from "@/components/PasswordInput/Login/PasswordInputLogin";
+import { PasswordInputRegistraion } from "@/components/PasswordInput/Registration/PasswordInputRegisration";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Авторизация"
+    title: "Регистрация"
 }
 
-export default function Login() {
+
+export default function Registraion() {
     return(
         <div className={styles.loginMenu}>
-            <ButtonBack/>
+            <ButtonBack />
             <div className={styles.auth}>
                 <Link href="/" className={styles.logo}>
                     <Image 
@@ -24,19 +25,19 @@ export default function Login() {
                     <h1>VegVision</h1>
                 </Link>
                 <form className={styles.form}>
-                    <h2>Авторизация</h2>
+                    <h2>Регистрация</h2>
                     <div className={styles.allboxes}>  
                         <div className={styles.box}>
                             <label>Email</label>
                             <input type="email" placeholder="example@gmail.com" required className={styles.input}/>
                         </div>
-                    <PasswordInputLogin />
+                        <PasswordInputRegistraion />
                     </div>
-                    <button type="submit" className={styles.authButton}>Войти</button>
+                    <button type="submit" className={styles.authButton}>Зарегистрироваться</button>
                 </form>
                 <div className={styles.regist}>
                     <span>Нет аккаунта?</span>
-                    <a href="/registration">Регистрация</a>
+                    <a href="/login">Войти</a>
                 </div>
             </div>
             <div className={styles.wrapper}>

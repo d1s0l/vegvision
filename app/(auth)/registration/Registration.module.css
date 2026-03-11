@@ -44,9 +44,6 @@
     cursor: pointer;
 }
 
-
-
-
 .allboxes {
     display: flex;
     flex-direction: column;
@@ -76,49 +73,6 @@
     font-weight:500;
 }
 
-.checkboxWrapper {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    gap: 10px;
-    color: var(--black-green);
-    font-size: 18px;
-    font-weight: 300;
-    font-family: var(--font-inter);
-    margin-bottom: 45px;
-}
-
-.checkbox {
-    appearance: none;
-    position: relative;
-    width: 24px;
-    height: 24px;
-    border-radius: 8px;
-    border: 2px solid var(--black-green);
-    transition: 350ms ease-in-out;
-    cursor: pointer;
-}
-
-.checkbox:checked {
-    background: var(--check-green);
-    border: none;
-}
-
-.checkbox:checked::after {
-    content: "";
-    position: absolute;
-
-    width: 6px;
-    height: 12px;
-
-    border: solid var(--element);
-    border-width: 0 2px 2px 0;
-
-    transform: rotate(45deg);
-
-    left: 9px;
-    top: 4px;
-}
 
 .authButton{
     width: 100%;

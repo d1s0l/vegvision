@@ -1,0 +1,21 @@
+.back{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 30px;
+    width: 60px;
+    height: 60px;
+    background: var(--dark-green);
+    padding-right: 5px;
+
+    margin-top: 30px;
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+.back:hover {
+    background-color: var(--check-green);
+  
+    transition-duration: 400ms;
+}
