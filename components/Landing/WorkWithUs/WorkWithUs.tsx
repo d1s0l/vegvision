@@ -1,24 +1,45 @@
+//исправить ввода телефона
+
+'use client'
+
 import styles from "./WorkWithUs.module.scss"
+import PhoneInput from 'react-phone-number-input/input'
+import { isValidPhoneNumber } from "react-phone-number-input/input"
+import { useState } from 'react'
 
 export function WorkWithUs() {
-    return(
-        <section className={styles.continer}>
-            <div>
-                <h1>Работа с нами</h1>
-                <h5>Заполните заявку на работу с нами</h5>
-            </div>
-            <div>
-                <span>Контактные данные</span>
-                <div className={styles.input}>
-                    <input type="text" placeholder="Имя"/>
-                    <input type="text" placeholder="Комания"/>
-                    <input type="Email"placeholder="Email" />
-                    <input type="number" placeholder="Телефон"/>
+    const [value, setValue] = useState<string | undefined>('')
+
+
+ 
+    return (
+        <section className={styles.container}>
+        <div>
+            <h1>Работа с нами</h1>
+            <h5>Заполните заявку на работу с нами</h5>
+        </div>
+        <div>
+            <span>Контактные данные</span>
+            <form >
+                <div className={styles.formGrid}>
+                    <input type="text" placeholder="Имя" />
+                    <input type="text" placeholder="Компания" />
+                    <input type="email" placeholder="Email" />
+                    <PhoneInput
+                        className={styles.phoneInput}
+                        country="RU"
+                        value={value}
+                        onChange={setValue}
+                        placeholder="Телефон"
+                    />
                 </div>
-                <div className={styles.button}>
-                    <button type="submit">Отправить</button>
+                <div className={styles.buttonContainer}>
+                    <button className={styles.buttonWrapper} type="submit">
+                        Отправить
+                    </button>            
                 </div>
-            </div>
+            </form>
+        </div>
         </section>
     )
 }
