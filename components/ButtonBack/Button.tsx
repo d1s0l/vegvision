@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "./Button.module.css"
+import styles from "./Button.module.scss"
 import Image from "next/image"
 
 export function ButtonBack() {

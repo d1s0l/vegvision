@@ -1,4 +1,4 @@
-.back{
+.back {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,10 +12,14 @@
     margin-top: 24px;
     margin-left: 30px;
     cursor: pointer;
-}
+    opacity: 1;
 
-.back:hover {
-    background-color: var(--check-green);
-  
-    transition-duration: 400ms;
+    &:hover {
+        background-color: var(--check-green);
+        transition-duration: 400ms;
+    }
+
+    @media (max-width:768px) {
+        display: none;
+    }
 }

@@ -12,31 +12,33 @@ export const metadata: Metadata = {
 export default function Login() {
     return(
         <div className={styles.loginMenu}>
-            <ButtonBack/>
-            <div className={styles.auth}>
-                <Link href="/" className={styles.logo}>
-                    <Image 
-                        src="./logo/logo_auth.svg"
-                        alt="Logo"
-                        width={79}
-                        height={65}
-                    />
-                    <h1>VegVision</h1>
-                </Link>
-                <form className={styles.form}>
-                    <h2>Авторизация</h2>
-                    <div className={styles.allboxes}>  
-                        <div className={styles.box}>
-                            <label>Email</label>
-                            <input type="email" placeholder="example@gmail.com" required className={styles.input}/>
+            <div className={styles.menu}>
+                <ButtonBack/>
+                <div className={styles.auth}>
+                    <Link href="/" className={styles.logo}>
+                        <Image 
+                            src="./logo/logo_auth.svg"
+                            alt="Logo"
+                            width={79}
+                            height={65}
+                        />
+                        <h1>VegVision</h1>
+                    </Link>
+                    <form className={styles.form}>
+                        <h2>Авторизация</h2>
+                        <div className={styles.allboxes}>  
+                            <div className={styles.box}>
+                                <label>Email</label>
+                                <input type="email" placeholder="example@gmail.com" required className={styles.input}/>
+                            </div>
+                        <PasswordInputLogin />
                         </div>
-                    <PasswordInputLogin />
+                        <button type="submit" className={styles.authButton}>Войти</button>
+                    </form>
+                    <div className={styles.regist}>
+                        <span>Нет аккаунта?</span>
+                        <a href="/registration">Регистрация</a>
                     </div>
-                    <button type="submit" className={styles.authButton}>Войти</button>
-                </form>
-                <div className={styles.regist}>
-                    <span>Нет аккаунта?</span>
-                    <a href="/registration">Регистрация</a>
                 </div>
             </div>
             <div className={styles.wrapper}>

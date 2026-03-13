@@ -19,8 +19,6 @@
         transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
-    /* ---------- Mobile ---------- */
-
     @media (max-width:1024px) {
         margin-top: 22px;
         width: 20%;
@@ -35,14 +33,12 @@
 
         span {
             opacity: 1;
-            //transform: translateY(10px); // текст чуть ниже
             font-size: 20px;
         }
         
     }
 }
 
-/* ---------- ACTIVE ---------- */
 
 .item.active {
     background-color: var(--background-section);
@@ -54,7 +50,7 @@
         
         span {
             opacity: 1;
-            transform: translateY(0); // выезжает вверх
+            transform: translateY(0);
         }
     }
 }
