@@ -21,10 +21,9 @@ export function Footer() {
             <div className={styles.line}></div>
             <div className={styles.lowwer}>
                 <div className={styles.linkspage}>
-                    <a href="">О нас</a>
-                    <a href="">Работа с нами</a>
-                    <a href="">Войти в аккаунт</a>
-                    <a href="">Контакты</a>
+                    <a href="/">Главная</a>
+                    <a href="/about">О нас</a>
+                    <a href="/contacts">Контакты</a>
                 </div>
                 <div className={styles.social}>
                     <a href="" className={styles.imagelink} >

@@ -1,19 +1,36 @@
 'use client'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./BurgerButton.module.scss"
 
-export function Burger() {
+type BurgerProps = {
+  variant?: "light" | "dark";
+};
+
+export function Burger({ variant = "light" }: BurgerProps) {
     const [isOpen, setIsOpen] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const toggleNav = () => {
         setIsOpen(!isOpen)
     }
     
+
     return(
-        <div className={styles.container}>
+        <div 
+            className={styles.container} 
+            data-theme={variant}
+        >
             <nav onClick={toggleNav} className={styles.button}>
-                <button className={`${styles.burger} ${isOpen ? styles.open : ''}`}>
+                <button 
+                    className={`${styles.burger} ${isOpen ? styles.open : ''}`}
+                    aria-label="Меню"
+                    aria-expanded={isOpen}
+                >
                     <span></span>
                     <span></span>
                     <span></span>
@@ -21,12 +38,12 @@ export function Burger() {
             </nav>
 
             {isOpen && (
-                <div className={styles.ul}>
+                <div className={styles.ul} data-theme={variant}>
                     <ul>
                         <li><a href="/login">Войти</a></li>
                         <li><a href="/">Главная</a></li>
-                        <li><a href="/">О нас</a></li>
-                        <li><a href="/">Контакты</a></li>
+                        <li><a href="/about">О нас</a></li>
+                        <li><a href="/contacts">Контакты</a></li>
                     </ul>
                 </div>
             )}

@@ -24,6 +24,7 @@
                 font-size: 30px;
                 font-family: var(--font-inter);
                 font-weight: 300;
+                line-height: 1.4;
             }
         }
     }
@@ -33,6 +34,91 @@
         background: rgba(255, 255, 255, 0.3);
         margin: 20px 0;
     }
+
+    @media (max-width: 1200px) {
+        padding: 30px 35px 40px 35px;
+
+        .title {
+            font-size: 46px;
+            margin-bottom: 50px;
+        }
+
+        .list .item .text {
+            font-size: 24px;
+        }
+
+        .divider {
+            margin: 15px 0;
+        }
+    }
+
+    @media (max-width: 992px) {
+        width: 100%;
+        margin-bottom: 30px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .title {
+            font-size: 42px;
+            margin-bottom: 40px;
+        }
+
+        .list .item .text {
+            font-size: 22px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 25px 30px 35px 30px;
+        border-radius: 25px;
+
+        .title {
+            font-size: 36px;
+            margin-bottom: 35px;
+        }
+
+        .list .item .text {
+            font-size: 20px;
+        }
+
+        .divider {
+            margin: 12px 0;
+        }
+    }
+
+    @media (max-width: 576px) {
+        padding: 20px 20px 30px 20px;
+        border-radius: 20px;
+
+        .title {
+            font-size: 28px;
+            margin-bottom: 25px;
+        }
+
+        .list .item .text {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .divider {
+            margin: 10px 0;
+        }
+    }
+
+    @media (max-width: 375px) {
+        padding: 15px 15px 25px 15px;
+
+        .title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .list .item .text {
+            font-size: 14px;
+        }
+    }
 }
 
 .problem {
@@ -40,6 +126,13 @@
             #FEF7A5 0%,
             #889B60 10%,
             #31572D 29%);
+
+    @media (max-width: 768px) {
+        background: radial-gradient(at right top,
+                #FEF7A5 0%,
+                #889B60 15%,
+                #31572D 40%);
+    }
 }
 
 .solution {
@@ -47,4 +140,11 @@
             #FEF7A5 0%,
             #889B60 10%,
             #31572D 29%);
+
+    @media (max-width: 768px) {
+        background: radial-gradient(at left top,
+                #FEF7A5 0%,
+                #889B60 15%,
+                #31572D 40%);
+    }
 }

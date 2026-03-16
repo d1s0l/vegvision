@@ -3,9 +3,27 @@
   padding-inline: 60px;
   font-family: var(--inter);
 
-  h1 { font-size: 96px; font-weight: 700; color: var(--dark-green); margin-bottom: 9px; }
-  h5 { font-size: 48px; font-weight: 200; color: var(--dark-green); margin-bottom: 132px; }
-  span { font-size: 36px; font-weight: 700; color: var(--dark-green); margin-bottom: 64px; display: block; }
+  h1 {
+    font-size: 96px;
+    font-weight: 700;
+    color: var(--dark-green);
+    margin-bottom: 9px;
+  }
+
+  h5 {
+    font-size: 48px;
+    font-weight: 200;
+    color: var(--dark-green);
+    margin-bottom: 132px;
+  }
+
+  span {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--dark-green);
+    margin-bottom: 64px;
+    display: block;
+  }
 
   .formGrid {
     display: grid;
@@ -52,6 +70,170 @@
 
     &:hover {
       background-color: var(--check-green);
+    }
+  }
+
+  @media (max-width: 1024px) {
+    margin-top: 120px;
+    padding-inline: 40px;
+
+    h1 {
+      font-size: 56px;
+    }
+
+    h5 {
+      font-size: 36px;
+      margin-bottom: 80px;
+    }
+
+    span {
+      font-size: 28px;
+      margin-bottom: 48px;
+    }
+
+    .formGrid {
+      gap: 40px 8%;
+      margin-bottom: 15px;
+
+      input,
+      .phoneInput {
+        font-size: 24px;
+      }
+    }
+
+    .buttonContainer {
+      margin-top: 120px;
+    }
+
+    .buttonWrapper {
+      padding: 14px 80px;
+      font-size: 24px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 100px;
+    padding-inline: 30px;
+
+    h1 {
+      font-size: 42px;
+    }
+
+    h5 {
+      font-size: 28px;
+      margin-bottom: 60px;
+    }
+
+    span {
+      font-size: 24px;
+      margin-bottom: 40px;
+    }
+
+    .formGrid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      margin-bottom: 10px;
+
+      input,
+      .phoneInput {
+        font-size: 22px;
+        padding-left: 8px;
+      }
+    }
+
+    .error {
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    .buttonContainer {
+      margin-top: 80px;
+      justify-content: center;
+    }
+
+    .buttonWrapper {
+      padding: 12px 60px;
+      font-size: 22px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    margin-top: 80px;
+    padding-inline: 20px;
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 5px;
+    }
+
+    h5 {
+      font-size: 22px;
+      margin-bottom: 40px;
+    }
+
+    span {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .formGrid {
+      gap: 25px;
+
+      input,
+      .phoneInput {
+        font-size: 18px;
+        padding-left: 5px;
+        padding-bottom: 5px;
+      }
+    }
+
+    .error {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .buttonContainer {
+      margin-top: 60px;
+    }
+
+    .buttonWrapper {
+      padding: 10px 40px;
+      font-size: 18px;
+      max-width: 280px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    h1 {
+      font-size: 32px;
+    }
+
+    h5 {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    span {
+      font-size: 16px;
+      margin-bottom: 25px;
+    }
+
+    .formGrid {
+      gap: 20px;
+
+      input,
+      .phoneInput {
+        font-size: 16px;
+      }
+    }
+
+    .buttonWrapper {
+      padding: 8px 30px;
+      font-size: 16px;
+      max-width: 240px;
     }
   }
 }

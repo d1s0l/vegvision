@@ -1,50 +1,65 @@
 'use client'
 
-import { useState } from "react";
 import Image from "next/image";
-import styles from "./Header.module.scss"
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import styles from "./Header.module.scss";
 import { Burger } from "./burgerButton/BurgerButton";
 
-export default function Header() {
-  const [active, setActive] = useState("Главная");
+type HeaderProps = {
+  variant?: "dark" | "light";
+};
 
-  const navItems = ["Главная", "О нас", "Контакты"];
+export default function Header({ variant = "light" }: HeaderProps) {
+
+  const pathname = usePathname();
+
+  const navItems = [
+    { name: "Главная", href: "/" },
+    { name: "О нас", href: "/about" },
+    { name: "Контакты", href: "/contacts" }
+  ];
 
   return (
-    <header >
-        <div className={styles.header}>
-            <div className={styles.side}>
-                <Image
-                    className={styles.logo}
-                    src="./logo/logo_header.svg"
-                    alt="Logo"
-                    width={60}
-                    height={54}
-                />
-                {navItems.map((item) => (
-                    <button 
-                        key={item}
-                        className={`${styles.button} ${active === item ? styles.active : ''}`}
-                        onClick={() => setActive(item)}
-                    >
-                        {item}
-                    </button>
-                ))}
-            </div>
-            <div className={styles.side}>
-                <Link href="/login">
-                    <button
-                        className={`${styles.button} ${active === "Войти" ? styles.active : ''}`}
-                        onClick={() => setActive("Войти")}
-                    >
-                        Войти
-                    </button>
-                </Link>
-            </div>
+    <header>
+      <div className={`${styles.header} ${variant === "dark" ? styles.dark : ""}`}>
+        
+        <div className={styles.side}>
+          <Image
+            className={styles.logo}
+            src={variant === "dark" ? "/logo/logo_header_dark.svg" : "/logo/logo_header_light.svg"}
+            alt="Logo"
+            width={60}
+            height={54}
+          />
+
+          {navItems.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className={`${styles.button} ${
+                pathname === item.href ? styles.active : ""
+              }`}
+            >
+              {item.name}
+            </Link>
+          ))}
         </div>
 
-        <Burger />
+        <div className={styles.side}>
+          <Link
+            href="/login"
+            className={`${styles.button} ${
+              pathname === "/login" ? styles.active : ""
+            }`}
+          >
+            Войти
+          </Link>
+        </div>
+
+      </div>
+
+      <Burger variant={variant} />
     </header>
   );
 }

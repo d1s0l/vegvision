@@ -22,6 +22,7 @@
     .logo {
         padding-right: 7px;
         color: var(--element);
+        stroke: var(--element);
         border-radius: 50px;
         border: 1px solid var(--element);
 
@@ -65,5 +66,33 @@
     @media (max-width: 1024px) {
         opacity: 0;
         pointer-events: none;
+    }
+}
+
+
+
+.dark {
+    border: 1px solid var(--dark-green);
+    
+    .logo {
+        border: 1px solid var(--dark-green);
+        color: var(--dark-green);
+        background: rgba(0, 0, 0, 0.05);
+    }
+
+    .button {
+        color: var(--dark-green);
+        border: 1px solid var(--dark-green);
+        background: rgba(0, 0, 0, 0.05);
+
+        &:hover {
+            background: var(--dark-green);
+            color: white;
+        }
+
+        &.active {
+            background: var(--dark-green);
+            color: white;
+        }
     }
 }
