@@ -7,6 +7,19 @@ export default function Contacts() {
         <div >
             <Header variant="dark"/>
             <WorkWithUs />
+            <div className={styles.contacts}>
+                <h5>Либо свяжитесь с нами через почту или по телефону</h5>
+                <address className={styles.info}>
+                    <div>
+                        <span>Email: </span>
+                        <a href="mailto:vegvision@yandex.ru">vegvision@yandex.ru</a>
+                    </div>
+                    <div>
+                        <span>Телефон: </span>
+                        <a href="tel:+7928xxxxxx">8 (800) 555-35-35</a>
+                    </div>
+                </address>
+            </div>
         </div>
     )
 }

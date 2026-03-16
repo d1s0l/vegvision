@@ -1,0 +1,56 @@
+.contacts {
+    margin-top: 100px;
+    font-family: var(--font-inter);
+    color: var(--dark-green);
+    padding-inline: 60px;
+    
+
+    
+    h5 {
+        font: {
+            size: 48px;
+            weight: bold;
+
+        };
+    }
+
+    .info {
+        margin-top: 20px;
+        color: var(--gray);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        div {
+                width: fit-content;
+                font-size: 36px;
+                font-style: normal;
+                position: relative;
+                
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -5px;
+                    left: 0;
+                    width: 0;
+                    height: 2px;
+                    background-color: var(--gray);
+                    transition: width 0.3s ease-in-out;
+                }
+            
+                &:hover::after {
+                    width: 100%;
+                }
+            }
+        
+
+        span {
+            font-weight: 600;
+        }
+
+        a {
+            font-weight: 300;
+        }
+    }
+}
