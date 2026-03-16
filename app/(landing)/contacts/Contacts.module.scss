@@ -5,13 +5,28 @@
     padding-inline: 60px;
     
 
+    @media (max-width: 1024px) {
+        padding-inline: 40px;
+    }
+
+    @media (max-width: 768px) {
+        font-size: 28px;
+        padding-inline: 30px;
+    }
     
     h5 {
         font: {
             size: 48px;
             weight: bold;
+        }
+        @media (max-width: 1024px) {
+            font-size: 36px;
+        }
 
-        };
+        @media (max-width: 768px) {
+            font-size: 28px;
+        }
+
     }
 
     .info {
@@ -41,6 +56,14 @@
             
                 &:hover::after {
                     width: 100%;
+                }
+
+                @media (max-width: 1024px) {
+                    font-size: 28px;
+                }
+
+                @media (max-width:758px) {
+                    font-size: 24px;
                 }
             }
         

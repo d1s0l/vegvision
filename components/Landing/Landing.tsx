@@ -1,11 +1,12 @@
-import Image from "next/image"
-import styles from "./Landing.module.scss"
-import { About } from "./About/About"
-import { HowWork } from "./HowWork/HowWork"
-import { WorkWithUs } from "./WorkWithUs/WorkWithUs"
+import Image from "next/image";
+import styles from "./Landing.module.scss";
+import { About } from "./About/About";
+import { HowWork } from "./HowWork/HowWork";
+import { WorkWithUs } from "./WorkWithUs/WorkWithUs";
+import { ScrollButton } from "./ScrollButton";
 
 export default function Landing() {
-    return(
+    return (
         <div>
             <Image 
                 src='/background.svg'
@@ -25,16 +26,22 @@ export default function Landing() {
                     <h1>VegVision</h1>
                     <p>Поможем предотвратить до 20% <br/>
                     потерь урожая</p>
-                    <button>
+                    
+                    <ScrollButton 
+                        targetId="about-section"
+                        className={styles.button}
+                    >
                         Подробнее
-                    </button>
+                    </ScrollButton>
                 </div>
             </section>
 
-            <About />
+            <div id="about-section">
+                <About />
+            </div>
             
             <HowWork />
             <WorkWithUs />
         </div>
-    )
+    );
 }
