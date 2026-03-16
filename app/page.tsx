@@ -6,7 +6,7 @@ import { Footer } from "@/components/Landing/Footer/Footer";
 export default function Home() {
   return (
     <main>
-      <Header />
+      <Header variant="light"/>
       <Landing />
       <Footer />
     </main>
