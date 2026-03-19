@@ -1,4 +1,4 @@
-import styles from "./About.module.scss"
+import styles from "./AboutC.module.scss"
 import { InfoCard } from "./InfoCard"
 
 export function About() {

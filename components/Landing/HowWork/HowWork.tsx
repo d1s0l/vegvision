@@ -1,4 +1,5 @@
 import styles from "./HowWork.module.scss"
+import Carousel from "./Carousel/Carousel"
 
 export function HowWork() {
     return(
@@ -8,8 +9,7 @@ export function HowWork() {
                 <p>nfdkslfds <br />dslkaj;dlskbr <br />dpsaipdsa</p>
             </div>
             <div>
-                <div className={styles.rectangle}></div>
-                <div></div>
+                <Carousel />
             </div>
         </section>
     )

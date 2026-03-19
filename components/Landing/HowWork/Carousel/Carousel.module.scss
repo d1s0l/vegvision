@@ -1,0 +1,92 @@
+.carousel {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.viewport {
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+}
+
+.slideWrapper {
+  min-width: 100%;
+  
+}
+
+.slide {
+  height: 600px;
+  border-radius: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: transform 0.3s ease;
+}
+
+.btn {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+
+    width: 80px;
+    height: 80px;
+
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.8);
+    }
+}
+
+.prev {
+    padding: 18px 33px 18px 28px;
+    left: 32px;
+}
+
+.next {
+    padding: 18px 28px 18px 33px;
+    right: 32px;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.dot {
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+  border: 3px solid var(--gold);
+
+  background: none;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.active {
+  width: 26px;
+  border-radius: 10px;
+  background: var(--gold);
+}
