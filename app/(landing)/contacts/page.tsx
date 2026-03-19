@@ -1,6 +1,11 @@
 import Header from "@/components/Landing/Header/Header"
 import styles from "./Contacts.module.scss"
 import { WorkWithUs } from "@/components/Landing/WorkWithUs/WorkWithUs"
+import { Metadata } from "next"
+
+export const metadata:Metadata ={
+    title: "Контакты"
+}
 
 export default function Contacts() {
     return(

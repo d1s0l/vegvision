@@ -1,5 +1,10 @@
 import Header from "@/components/Landing/Header/Header"
 import styles from "./About.module.scss"
+import { Metadata } from "next"
+
+export const metadata:Metadata ={
+    title: "О нас"
+}
 
 export default function About(){
     return(

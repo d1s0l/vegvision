@@ -53,6 +53,10 @@
     &:hover {
         background: rgba(0, 0, 0, 0.8);
     }
+
+    @media (max-width: 992px) {
+      opacity: 0;
+    }
 }
 
 .prev {
