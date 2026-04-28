@@ -37,11 +37,12 @@ export default function Landing() {
             </section>
 
             <div id="about-section">
-                <About />
+                <div className={styles.sections}>
+                    <About />
+                    <HowWork />
+                    <WorkWithUs />
+                </div>
             </div>
-            
-            <HowWork />
-            <WorkWithUs />
         </div>
     );
 }

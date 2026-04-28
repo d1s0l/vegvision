@@ -3,6 +3,14 @@
     min-height: 100vh;
 }
 
+.sections {
+    width: min(
+        var(--landing-content-max, 1240px),
+        calc(100% - (var(--landing-gutter, 60px) * 2))
+    );
+    margin: 0 auto;
+}
+
 .image {
     border-radius: 0 0 75px 75px;
 

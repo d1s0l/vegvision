@@ -33,3 +33,20 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.landing-layout {
+  --landing-gutter: clamp(28px, 5vw, 96px);
+  --landing-content-max: 1240px;
+}
+
+@media (max-width: 1200px) {
+  .landing-layout {
+    --landing-content-max: 1120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .landing-layout {
+    --landing-gutter: clamp(20px, 6vw, 40px);
+  }
+}

@@ -1,35 +1,39 @@
 .container {
-  margin-top: 180px;
-  padding-inline: 60px;
+  width: min(
+    var(--landing-content-max, 1240px),
+    calc(100% - (var(--landing-gutter, 60px) * 2))
+  );
+  margin-top: 120px;
+  margin-inline: auto;
   font-family: var(--inter);
 
   h1 {
-    font-size: 96px;
+    font-size: 68px;
     font-weight: 700;
     color: var(--dark-green);
-    margin-bottom: 9px;
+    margin-bottom: 6px;
   }
 
   h5 {
-    font-size: 48px;
+    font-size: 32px;
     font-weight: 200;
     color: var(--dark-green);
-    margin-bottom: 132px;
+    margin-bottom: 72px;
   }
 
   span {
-    font-size: 36px;
+    font-size: 26px;
     font-weight: 700;
     color: var(--dark-green);
-    margin-bottom: 64px;
+    margin-bottom: 34px;
     display: block;
   }
 
   .formGrid {
     display: grid;
     grid-template-columns: 45% 45%;
-    gap: 60px 10%;
-    margin-bottom: 20px;
+    gap: 32px 10%;
+    margin-bottom: 12px;
 
     input,
     .phoneInput {
@@ -37,10 +41,11 @@
       border-bottom: 2px solid var(--light-gray);
       outline: none;
       color: var(--gray);
-      font-size: 28px;
+      font-size: 20px;
       font-weight: 500;
-      padding-left: 12px;
+      padding-left: 8px;
       background: transparent;
+      padding-bottom: 6px;
     }
   }
 
@@ -54,15 +59,15 @@
   .buttonContainer {
     display: flex;
     justify-content: flex-end;
-    margin-top: 170px;
+    margin-top: 72px;
   }
 
   .buttonWrapper {
     background-color: var(--dark-green);
     color: var(--gold);
-    padding: 16px 122px;
+    padding: 12px 76px;
     border-radius: 50px;
-    font-size: 28px;
+    font-size: 20px;
     font-weight: 700;
     cursor: pointer;
     border: none;
@@ -74,70 +79,68 @@
   }
 
   @media (max-width: 1024px) {
-    margin-top: 120px;
-    padding-inline: 40px;
+    margin-top: 96px;
 
     h1 {
-      font-size: 56px;
+      font-size: 54px;
     }
 
     h5 {
-      font-size: 36px;
-      margin-bottom: 80px;
+      font-size: 28px;
+      margin-bottom: 56px;
     }
 
     span {
-      font-size: 28px;
-      margin-bottom: 48px;
+      font-size: 24px;
+      margin-bottom: 28px;
     }
 
     .formGrid {
-      gap: 40px 8%;
-      margin-bottom: 15px;
+      gap: 28px 8%;
+      margin-bottom: 12px;
 
       input,
       .phoneInput {
-        font-size: 24px;
+        font-size: 18px;
       }
     }
 
     .buttonContainer {
-      margin-top: 120px;
+      margin-top: 56px;
     }
 
     .buttonWrapper {
-      padding: 14px 80px;
-      font-size: 24px;
+      padding: 11px 62px;
+      font-size: 18px;
     }
   }
 
   @media (max-width: 768px) {
-    margin-top: 100px;
-    padding-inline: 30px;
+    margin-top: 80px;
 
     h1 {
       font-size: 42px;
     }
 
     h5 {
-      font-size: 28px;
-      margin-bottom: 60px;
+      font-size: 24px;
+      margin-bottom: 42px;
     }
 
     span {
-      font-size: 24px;
-      margin-bottom: 40px;
+      font-size: 20px;
+      margin-bottom: 24px;
     }
 
     .formGrid {
       grid-template-columns: 1fr;
-      gap: 30px;
-      margin-bottom: 10px;
+      gap: 22px;
+      margin-bottom: 8px;
 
       input,
       .phoneInput {
-        font-size: 22px;
-        padding-left: 8px;
+        font-size: 18px;
+        padding-left: 6px;
       }
     }
 
@@ -147,44 +150,42 @@
     }
 
     .buttonContainer {
-      margin-top: 80px;
+      margin-top: 42px;
       justify-content: center;
     }
 
     .buttonWrapper {
-      padding: 12px 60px;
-      font-size: 22px;
+      padding: 11px 48px;
+      font-size: 18px;
       width: 100%;
-      max-width: 400px;
+      max-width: 320px;
       text-align: center;
     }
   }
 
   @media (max-width: 480px) {
-    margin-top: 80px;
-    padding-inline: 20px;
-
+    margin-top: 64px;
     h1 {
       font-size: 32px;
       margin-bottom: 5px;
     }
 
     h5 {
-      font-size: 22px;
-      margin-bottom: 40px;
+      font-size: 20px;
+      margin-bottom: 32px;
     }
 
     span {
-      font-size: 20px;
-      margin-bottom: 30px;
+      font-size: 18px;
+      margin-bottom: 20px;
     }
 
     .formGrid {
-      gap: 25px;
+      gap: 18px;
 
       input,
       .phoneInput {
-        font-size: 18px;
+        font-size: 16px;
         padding-left: 5px;
         padding-bottom: 5px;
       }
@@ -196,13 +197,13 @@
     }
 
     .buttonContainer {
-      margin-top: 60px;
+      margin-top: 28px;
     }
 
     .buttonWrapper {
-      padding: 10px 40px;
-      font-size: 18px;
-      max-width: 280px;
+      padding: 10px 36px;
+      font-size: 16px;
+      max-width: 260px;
     }
   }
 

@@ -18,7 +18,7 @@
 }
 
 .slide {
-  height: 600px;
+  height: 500px;
   border-radius: 30px;
 
   display: flex;
@@ -77,8 +77,8 @@
 }
 
 .dot {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
 
   border-radius: 50%;
   border: 3px solid var(--gold);
@@ -90,7 +90,35 @@
 }
 
 .active {
-  width: 26px;
+  width: 24px;
   border-radius: 10px;
   background: var(--gold);
+}
+
+@media (max-width: 1200px) {
+  .slide {
+    height: 440px;
+  }
+
+  .btn {
+    width: 68px;
+    height: 68px;
+  }
+
+  .prev {
+    left: 24px;
+    padding: 14px 27px 14px 22px;
+  }
+
+  .next {
+    right: 24px;
+    padding: 14px 22px 14px 27px;
+  }
+}
+
+@media (max-width: 768px) {
+  .slide {
+    height: 320px;
+    border-radius: 22px;
+  }
 }

@@ -1,12 +1,12 @@
 .card {
-    padding: 34px 44px 46px 42px;
+    padding: 30px 36px 38px;
     border-radius: 30px;
     color: var(--element);
     width: 48%;
 
     .title {
-        font-size: 56px;
-        margin-bottom: 70px;
+        font-size: 48px;
+        margin-bottom: 52px;
         color: var(--gold);
         font-weight: 600;
         font-family: var(--font-inter);
@@ -21,7 +21,7 @@
             position: relative;
 
             .text {
-                font-size: 30px;
+                font-size: 26px;
                 font-family: var(--font-inter);
                 font-weight: 300;
                 line-height: 1.4;
@@ -36,15 +36,15 @@
     }
 
     @media (max-width: 1200px) {
-        padding: 30px 35px 40px 35px;
+        padding: 28px 30px 34px;
 
         .title {
-            font-size: 46px;
-            margin-bottom: 50px;
+            font-size: 42px;
+            margin-bottom: 42px;
         }
 
         .list .item .text {
-            font-size: 24px;
+            font-size: 22px;
         }
 
         .divider {

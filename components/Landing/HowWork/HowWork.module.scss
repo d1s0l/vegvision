@@ -1,82 +1,82 @@
 .how {
     border-radius: 75px;
     background: radial-gradient(at right top, #FEF7A5 0%, #889B60 10%, #31572D 29%);
-    padding: 78px 60px;
+    padding: 52px 44px;
 
     h1 {
-        font-size: 96px;
+        font-size: 66px;
         font-weight: 700;
         font-family: var(--inter);
         color: var(--gold);
-        margin-bottom: 32px;
+        margin-bottom: 22px;
     }
 
     ul {
-        font-size: 36px;
+        font-size: 25px;
         font-weight: 300;
         font-family: var(--inter);
         color: var(--element);
-        margin-bottom: 40px;
+        margin-bottom: 28px;
         
     }
 
     @media (max-width: 1200px) {
-        padding: 60px 40px;
+        padding: 46px 34px;
         border-radius: 60px;
 
         h1 {
-            font-size: 72px;
-            margin-bottom: 28px;
-        }
-
-        ul {
-            font-size: 36px;
-            margin-bottom: 28px;
-        }
-    }
-
-    @media (max-width: 992px) {
-        padding: 50px 30px;
-        border-radius: 50px;
-
-        h1 {
             font-size: 56px;
-            margin-bottom: 24px;
-        }
-
-        ul {
-            font-size: 28px;
-            margin-bottom: 24px;
-        }
-    }
-
-    @media (max-width: 768px) {
-        padding: 40px 25px;
-        border-radius: 40px;
-
-        h1 {
-            font-size: 42px;
             margin-bottom: 20px;
         }
 
         ul {
             font-size: 22px;
+            margin-bottom: 22px;
+        }
+    }
+
+    @media (max-width: 992px) {
+        padding: 40px 28px;
+        border-radius: 50px;
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 18px;
+        }
+
+        ul {
+            font-size: 20px;
             margin-bottom: 20px;
         }
     }
 
-    @media (max-width: 576px) {
-        padding: 30px 20px;
-        border-radius: 30px;
+    @media (max-width: 768px) {
+        padding: 32px 22px;
+        border-radius: 40px;
 
         h1 {
-            font-size: 32px;
-            margin-bottom: 16px;
+            font-size: 36px;
+            margin-bottom: 14px;
         }
 
         ul {
-            font-size: 18px;
-            margin-bottom: 16px;
+            font-size: 17px;
+            margin-bottom: 14px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        padding: 26px 18px;
+        border-radius: 30px;
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        ul {
+            font-size: 16px;
+            margin-bottom: 12px;
         }
     }
 

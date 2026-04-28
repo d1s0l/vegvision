@@ -9,22 +9,31 @@ export const metadata:Metadata ={
 
 export default function Contacts() {
     return(
-        <div >
+        <div className={styles.page}>
             <Header variant="dark"/>
-            <WorkWithUs />
-            <div className={styles.contacts}>
-                <h5>Либо свяжитесь с нами через почту или по телефону</h5>
-                <address className={styles.info}>
-                    <div>
-                        <span>Email: </span>
+            <section className={styles.hero}>
+                <div className={styles.badge}>Контакты</div>
+                <h1>Свяжитесь с нами</h1>
+                <p>Если хотите обсудить внедрение, задать вопрос по проекту или договориться о сотрудничестве, напишите нам любым удобным способом.</p>
+            </section>
+            <section className={styles.contacts}>
+                <div className={styles.card}>
+                    <h5>Почта</h5>
+                    <address className={styles.info}>
                         <a href="mailto:vegvision@yandex.ru">vegvision@yandex.ru</a>
-                    </div>
-                    <div>
-                        <span>Телефон: </span>
+                    </address>
+                </div>
+                <div className={styles.card}>
+                    <h5>Телефон</h5>
+                    <address className={styles.info}>
                         <a href="tel:+7928xxxxxx">8 (800) 555-35-35</a>
-                    </div>
-                </address>
-            </div>
+                    </address>
+                </div>
+            </section>
+            <section className={styles.hint}>
+                <p>Обычно отвечаем в рабочее время. Если оставите заявку ниже, мы свяжемся с вами и поможем подобрать удобный формат работы.</p>
+            </section>
+            <WorkWithUs />
         </div>
     )
 }

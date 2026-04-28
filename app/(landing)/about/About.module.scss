@@ -1,216 +1,286 @@
 .container {
+    padding-bottom: 90px;
+}
+
+.hero {
+    width: min(
+        var(--landing-content-max, 1240px),
+        calc(100% - (var(--landing-gutter, 60px) * 2))
+    );
+    margin: 72px auto 0;
 
     h1 {
         font: {
             family: var(--font-inter);
-            size: 96px;
-            weight: bold;
+            size: 66px;
+            weight: 700;
         }
-
-        margin-top: 80px;
         color: var(--dark-green);
-        margin-left: 60px;
+        margin-top: 18px;
     }
 
-    @media (max-width: 1200px) {
-        h1 {
-            font-size: 72px;
-            margin-left: 40px;
-            margin-top: 60px;
-        }
-    }
+    h3 {
+        max-width: 880px;
+        margin-top: 16px;
+        color: var(--gray);
+        line-height: 1.4;
 
-    @media (max-width: 768px) {
-        h1 {
-            font-size: 48px;
-            margin-left: 30px;
-            margin-top: 40px;
-        }
-    }
-
-    @media (max-width: 480px) {
-        h1 {
-            font-size: 36px;
-            margin-left: 20px;
-            margin-top: 30px;
+        font: {
+            family: var(--font-inter);
+            size: 28px;
+            weight: 500;
         }
     }
 }
 
-.textBlock {
-    padding: 100px 60px 0px 60px;
+.heroBadge {
+    width: fit-content;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: rgba(49, 87, 44, 0.1);
+    color: var(--check-green);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
 
-    h3 {
-        width: 60%;
-        color: var(--gray);
-
-        font: {
-            family: var(--font-inter);
-            size: 48px;
-            weight: 600;
-        }
+    font: {
+        family: var(--font-inter);
+        size: 14px;
+        weight: 700;
     }
+}
+
+.textBlock {
+    width: min(
+        var(--landing-content-max, 1240px),
+        calc(100% - (var(--landing-gutter, 60px) * 2))
+    );
+    margin: 0 auto;
+    padding: 48px 0 0;
 
     .grid {
-        margin-top: 100px;
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        column-gap: 40px;
-        row-gap: 60px;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 24px;
 
         h5 {
-            width: fit-content;
             color: var(--dark-green);
-            border-bottom: 2px solid var(--dark-green);
-            margin-bottom: 20px;
+            margin-bottom: 14px;
 
             font: {
                 family: var(--font-inter);
-                size: 38px;
-                weight: 500;
+                size: 26px;
+                weight: 600;
             }
         }
 
         span {
             color: var(--dark-green);
+            line-height: 1.55;
 
             font: {
                 family: var(--font-inter);
-                size: 28px;
+                size: 19px;
                 weight: 300;
             }
-        }
-
-        img {
-            width: 100%;
-            height: 100%;
-            border-radius: 30px;
-            object-fit: cover;
         }
     }
 
     @media (max-width: 1400px) {
-        padding: 80px 40px 0px 40px;
-
-        h3 {
-            font-size: 42px;
-            width: 70%;
-        }
-
-        .grid {
-            column-gap: 30px;
-            row-gap: 50px;
-
-            h5 {
-                font-size: 32px;
-            }
-
-            span {
-                font-size: 24px;
-            }
-        }
+        padding-top: 40px;
     }
 
     @media (max-width: 1024px) {
-        padding: 60px 30px 0px 30px;
-
-        h3 {
-            font-size: 36px;
-            width: 80%;
-        }
+        padding-top: 36px;
 
         .grid {
-            margin-top: 80px;
             grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: auto;
-
-            h5 {
-                font-size: 28px;
-            }
-
-            span {
-                font-size: 20px;
-            }
-        }
-    }
-
-    @media (max-width: 768px) {
-        padding: 50px 20px 0px 20px;
-
-        h3 {
-            font-size: 28px;
-            width: 100%;
-        }
-
-        .grid {
-            margin-top: 60px;
-            column-gap: 20px;
-            row-gap: 40px;
 
             h5 {
                 font-size: 24px;
-                margin-bottom: 15px;
             }
 
             span {
                 font-size: 18px;
             }
+        }
+    }
 
-            img {
-                border-radius: 20px;
+    @media (max-width: 768px) {
+        padding-top: 28px;
+
+        .grid {
+            gap: 18px;
+
+            h5 {
+                font-size: 22px;
+                margin-bottom: 12px;
+            }
+
+            span {
+                font-size: 17px;
             }
         }
     }
 
     @media (max-width: 480px) {
-        padding: 40px 15px 0px 15px;
-
-        h3 {
-            font-size: 24px;
-        }
+        padding-top: 24px;
 
         .grid {
-            margin-top: 40px;
             grid-template-columns: 1fr;
-            gap: 30px;
+            gap: 16px;
 
             h5 {
-                font-size: 22px;
+                font-size: 20px;
             }
 
             span {
                 font-size: 16px;
             }
-
-            img {
-                height: 250px;
-                border-radius: 15px;
-            }
-
-            div:nth-child(1) {
-                order: 1;
-            }
-
-            div:nth-child(2) {
-                order: 2;
-            }
-
-            img:nth-child(3) {
-                order: 3;
-            }
-
-            div:nth-child(4) {
-                order: 4;
-            }
-
-            div:nth-child(5) {
-                order: 5;
-            }
-
-            div:nth-child(6) {
-                order: 6;
-            }
         }
+    }
+}
+
+.card {
+    grid-column: span 4;
+    padding: 24px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.48);
+    box-shadow: 0 10px 30px rgba(19, 42, 19, 0.06);
+}
+
+.imageCard {
+    grid-column: span 4;
+    min-height: 100%;
+    border-radius: 28px;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(49, 87, 44, 0.1), rgba(254, 247, 165, 0.35));
+    box-shadow: 0 10px 30px rgba(19, 42, 19, 0.06);
+
+    img {
+        width: 100%;
+        height: 100%;
+        min-height: 320px;
+        object-fit: cover;
+    }
+}
+
+.note {
+    margin-top: 24px;
+    padding: 24px 28px;
+    border-left: 4px solid var(--check-green);
+    border-radius: 20px;
+    background: rgba(49, 87, 44, 0.08);
+
+    p {
+        max-width: 820px;
+        color: var(--dark-green);
+        line-height: 1.5;
+
+        font: {
+            family: var(--font-inter);
+            size: 22px;
+            weight: 500;
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .container {
+        padding-bottom: 72px;
+    }
+
+    .hero {
+        margin-top: 56px;
+
+        h1 {
+            font-size: 58px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .card,
+    .imageCard {
+        grid-column: span 1;
+    }
+
+    .imageCard img {
+        min-height: 280px;
+    }
+
+    .note p {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding-bottom: 56px;
+    }
+
+    .hero {
+        margin-top: 40px;
+
+        h1 {
+            font-size: 44px;
+        }
+
+        h3 {
+            font-size: 20px;
+        }
+    }
+
+    .card {
+        padding: 20px;
+        border-radius: 22px;
+    }
+
+    .imageCard {
+        border-radius: 22px;
+    }
+
+    .note {
+        margin-top: 18px;
+        padding: 18px 20px;
+    }
+
+    .note p {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        margin-top: 32px;
+
+        h1 {
+            font-size: 36px;
+        }
+
+        h3 {
+            font-size: 18px;
+        }
+    }
+
+    .heroBadge {
+        font-size: 12px;
+        padding: 8px 14px;
+    }
+
+    .card {
+        padding: 18px;
+        border-radius: 20px;
+    }
+
+    .imageCard img {
+        min-height: 220px;
+    }
+
+    .note p {
+        font-size: 16px;
     }
 }

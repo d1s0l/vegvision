@@ -1,5 +1,3 @@
-import type { PropsWithChildren } from "react";
-import Header from "@/components/Landing/Header/Header";
 import { Footer } from "@/components/Landing/Footer/Footer";
 
 export default function LandingLayout({
@@ -8,7 +6,7 @@ export default function LandingLayout({
     children: React.ReactNode;
 }>) {
     return(
-        <div className="min-h-screen">
+        <div className="landing-layout min-h-screen">
             <div>
                 {children}
             </div>
