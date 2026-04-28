@@ -1,8 +1,8 @@
 import Image from "next/image"
-import styles from "@/app/(auth)/Auth.module.scss"
+import styles from "@/shared/ui/auth-shell/AuthShell.module.scss"
 import Link from "next/link";
-import { ButtonBack } from "@/components/ButtonBack/Button";
-import { PasswordInputLogin } from "@/components/PasswordInput/Login/PasswordInputLogin";
+import { ButtonBack } from "@/shared/ui/button-back";
+import { LoginForm } from "@/features/auth/login-form";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -24,17 +24,7 @@ export default function Login() {
                         />
                         <h1>VegVision</h1>
                     </Link>
-                    <form className={styles.form}>
-                        <h2>Авторизация</h2>
-                        <div className={styles.allboxes}>  
-                            <div className={styles.box}>
-                                <label>Email</label>
-                                <input type="email" placeholder="example@gmail.com" required className={styles.input}/>
-                            </div>
-                        <PasswordInputLogin />
-                        </div>
-                        <button type="submit" className={styles.authButton}>Войти</button>
-                    </form>
+                    <LoginForm />
                     <div className={styles.regist}>
                         <span>Нет аккаунта?</span>
                         <a href="/registration">Регистрация</a>

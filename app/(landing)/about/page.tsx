@@ -1,4 +1,4 @@
-import Header from "@/components/Landing/Header/Header"
+import { LandingHeader } from "@/widgets/landing/header"
 import styles from "./About.module.scss"
 import { Metadata } from "next"
 
@@ -9,7 +9,7 @@ export const metadata:Metadata ={
 export default function About(){
     return(
         <div className={styles.container}>
-            <Header variant="dark"/>
+            <LandingHeader variant="dark"/>
             <section className={styles.hero}>
                 <div className={styles.heroBadge}>О проекте</div>
                 <h1>О нас</h1>

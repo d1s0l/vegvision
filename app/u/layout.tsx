@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from "react";
-import { Sidebar } from "@/components";
+import { Sidebar } from "@/widgets/account/sidebar";
 
 export default function LkLayout({
     children,

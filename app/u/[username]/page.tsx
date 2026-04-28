@@ -1,6 +1,6 @@
-import { BlockSection } from "@/components/lk/Home/HomeBlock/BlockSection";
-import UserGreeting from "@/components/UserGreeting/UserGreeting";
-import { Analiz } from "@/components/lk/Home/Analized/Analiz";
+import { Analiz } from "@/widgets/account/analysis";
+import { BlockSection } from "@/widgets/account/home-block-section";
+import { UserGreeting } from "@/widgets/account/user-greeting";
 import styles from "./LkHome.module.scss"
 
 export default function User(){

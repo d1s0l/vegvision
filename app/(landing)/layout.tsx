@@ -1,4 +1,4 @@
-import { Footer } from "@/components/Landing/Footer/Footer";
+import { LandingFooter } from "@/widgets/landing/footer";
 
 export default function LandingLayout({
     children,
@@ -10,7 +10,7 @@ export default function LandingLayout({
             <div>
                 {children}
             </div>
-            <Footer />
+            <LandingFooter />
         </div>
     )
 }

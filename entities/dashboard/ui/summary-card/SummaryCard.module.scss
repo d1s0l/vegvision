@@ -1,0 +1,36 @@
+.block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 34px;
+    padding: 22px 20px;
+    background: var(--light-green);
+    min-height: 170px;
+
+    h3 {
+        color: var(--dark-green);
+        font-family: var(--font-inter);
+        font-size: 24px;
+        font-weight: 500;
+        margin-top: 20px;
+    }
+
+    span {
+        color: var(--dark-green);
+        font-family: var(--font-inter);
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 1;
+        margin-top: 16px;
+    }
+}
+
+.icon {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 22px;
+    background: var(--element);
+}

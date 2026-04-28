@@ -1,13 +1,13 @@
-import Header  from "@/components/Landing/Header/Header";
-import Landing from "@/components/Landing/Landing";
-import { Footer } from "@/components/Landing/Footer/Footer";
+import { LandingFooter } from "@/widgets/landing/footer";
+import { LandingHeader } from "@/widgets/landing/header";
+import { LandingHero } from "@/widgets/landing/main-hero";
 
 export default function Home() {
   return (
     <main className="landing-layout">
-      <Header variant="light"/>
-      <Landing />
-      <Footer />
+      <LandingHeader variant="light"/>
+      <LandingHero />
+      <LandingFooter />
     </main>
   );
 }

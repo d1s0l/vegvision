@@ -1,0 +1,1 @@
+export { Analiz } from "./Analiz";

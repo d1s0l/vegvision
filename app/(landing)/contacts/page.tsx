@@ -1,6 +1,6 @@
-import Header from "@/components/Landing/Header/Header"
+import { LandingHeader } from "@/widgets/landing/header"
 import styles from "./Contacts.module.scss"
-import { WorkWithUs } from "@/components/Landing/WorkWithUs/WorkWithUs"
+import { WorkWithUs } from "@/widgets/landing/work-with-us"
 import { Metadata } from "next"
 
 export const metadata:Metadata ={
@@ -10,7 +10,7 @@ export const metadata:Metadata ={
 export default function Contacts() {
     return(
         <div className={styles.page}>
-            <Header variant="dark"/>
+            <LandingHeader variant="dark"/>
             <section className={styles.hero}>
                 <div className={styles.badge}>Контакты</div>
                 <h1>Свяжитесь с нами</h1>
