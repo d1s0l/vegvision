@@ -4,6 +4,7 @@ import { ScrollButton } from "@/features/landing/scroll-to-section";
 import { LandingAbout } from "@/widgets/landing/about";
 import { LandingHowWork } from "@/widgets/landing/how-work";
 import { WorkWithUs } from "@/widgets/landing/work-with-us";
+import { ScrollReveal } from "@/shared/ui/scroll-reveal";
 
 export default function Landing() {
     return (
@@ -38,9 +39,15 @@ export default function Landing() {
 
             <div id="about-section">
                 <div className={styles.sections}>
-                    <LandingAbout />
-                    <LandingHowWork />
-                    <WorkWithUs />
+                    <ScrollReveal direction="up">
+                        <LandingAbout />
+                    </ScrollReveal>
+                    <ScrollReveal direction="up" delay={120}>
+                        <LandingHowWork />
+                    </ScrollReveal>
+                    <ScrollReveal direction="up" delay={180}>
+                        <WorkWithUs />
+                    </ScrollReveal>
                 </div>
             </div>
         </div>

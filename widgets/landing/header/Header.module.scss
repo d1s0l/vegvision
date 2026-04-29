@@ -12,6 +12,9 @@
     background: transparent;
     height: 60px;
     overflow: hidden;
+    opacity: 0;
+    transform: translateY(36px);
+    animation: headerDropIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
 
     .side {
         display: flex;
@@ -69,6 +72,18 @@
     }
 }
 
+@keyframes headerDropIn {
+    from {
+        opacity: 0;
+        transform: translateY(36px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 
 .dark {
@@ -95,5 +110,13 @@
             background: var(--dark-green);
             color: white;
         }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .header {
+        animation: none;
+        opacity: 1;
+        transform: none;
     }
 }

@@ -58,6 +58,9 @@
     text-align: right;
     color: var(--gold);
     max-width: 90%;
+    opacity: 0;
+    transform: translateX(72px);
+    animation: heroTextSlideIn 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
 
     @media (max-width: 992px) {
         align-items: center;
@@ -203,5 +206,25 @@
             margin-top: 15px;
             border-radius: 40px;
         }
+    }
+}
+
+@keyframes heroTextSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(72px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .textblock {
+        animation: none;
+        opacity: 1;
+        transform: none;
     }
 }
