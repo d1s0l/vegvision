@@ -15,21 +15,21 @@ const statusClassName = {
 
 export function AnalysisRow({ analysis }: AnalysisRowProps) {
   return (
-    <div className={styles.stroke}>
+    <article className={styles.stroke}>
       <div className={styles.left}>
         <div>
-          <Image src={analysis.image} alt="img" height={50} width={50} />
+          <Image src={analysis.image} alt={analysis.name} height={64} width={64} />
         </div>
         <div className={styles.info}>
-          <span>{analysis.name} - {analysis.place}</span>
+          <span>{analysis.name} · {analysis.place}</span>
           <span>{analysis.date}</span>
         </div>
       </div>
       <div className={styles.right}>
-        <a href="/a" className={statusClassName[analysis.status]}>
+        <span className={statusClassName[analysis.status]}>
           {plantStatusText[analysis.status]}
-        </a>
+        </span>
       </div>
-    </div>
+    </article>
   );
 }

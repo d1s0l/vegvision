@@ -1,0 +1,142 @@
+.card {
+  padding: 28px;
+  border-radius: 30px;
+  border: 1px solid color-mix(in srgb, var(--light-gray) 18%, transparent);
+  background: var(--element);
+  box-shadow: 0 18px 40px color-mix(in srgb, var(--dark-green) 7%, transparent);
+}
+
+.heading {
+  margin-bottom: 22px;
+
+  p,
+  h2 {
+    margin: 0;
+  }
+
+  p {
+    color: var(--check-green);
+    font-family: var(--font-inter);
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  h2 {
+    margin-top: 8px;
+    color: var(--dark-green);
+    font-family: var(--font-urbanist);
+    font-size: clamp(1.45rem, 2vw, 1.9rem);
+    line-height: 1.1;
+  }
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.rowTitle {
+  padding-top: 16px;
+  color: var(--dark-green);
+  font-family: var(--font-inter);
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.cells {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.cell {
+  min-height: 110px;
+  padding: 16px;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid transparent;
+
+  strong,
+  span {
+    margin: 0;
+    font-family: var(--font-inter);
+  }
+
+  strong {
+    color: var(--dark-green);
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  span {
+    color: var(--gray);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
+
+.good {
+  background: color-mix(in srgb, var(--light-green) 56%, var(--element));
+  border-color: color-mix(in srgb, var(--check-green) 18%, transparent);
+}
+
+.warning {
+  background: color-mix(in srgb, var(--gold) 62%, var(--element));
+  border-color: color-mix(in srgb, var(--gold-hover) 16%, transparent);
+}
+
+.critical {
+  background: color-mix(in srgb, var(--background-section) 20%, var(--element));
+  border-color: color-mix(in srgb, var(--background-section) 20%, transparent);
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  color: var(--gray);
+  font-family: var(--font-inter);
+  font-size: 0.88rem;
+  font-weight: 600;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  i {
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    display: inline-block;
+  }
+}
+
+@media (max-width: 960px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .cells {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .cells {
+    grid-template-columns: 1fr;
+  }
+}

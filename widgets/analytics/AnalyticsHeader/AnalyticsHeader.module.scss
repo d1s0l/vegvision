@@ -1,0 +1,122 @@
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 32px;
+  border-radius: 32px;
+  border: 1px solid color-mix(in srgb, var(--light-gray) 18%, transparent);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--light-green) 68%, transparent) 0%, transparent 34%),
+    var(--element);
+  box-shadow: 0 18px 40px color-mix(in srgb, var(--dark-green) 7%, transparent);
+}
+
+.copy {
+  max-width: 720px;
+
+  h1 {
+    margin: 18px 0 12px;
+    color: var(--dark-green);
+    font-family: var(--font-urbanist);
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 1;
+  }
+
+  p {
+    margin: 0;
+    color: var(--gray);
+    font-family: var(--font-inter);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--light-green) 62%, var(--element));
+  color: var(--check-green);
+  font-family: var(--font-inter);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.filters {
+  width: min(100%, 420px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filterLabel {
+  color: var(--gray);
+  font-family: var(--font-inter);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.filterButton {
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  border: 1px solid color-mix(in srgb, var(--light-gray) 30%, transparent);
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--background) 62%, var(--element));
+  color: var(--dark-green);
+  font-family: var(--font-inter);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+
+  span:nth-child(2) {
+    flex: 1;
+    text-align: left;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--check-green) 30%, transparent);
+    background: color-mix(in srgb, var(--light-green) 36%, var(--element));
+  }
+}
+
+.filterIcon {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--element) 78%, var(--background));
+  color: var(--check-green);
+}
+
+@media (max-width: 960px) {
+  .header {
+    flex-direction: column;
+    padding: 24px;
+    border-radius: 24px;
+  }
+
+  .filters {
+    width: 100%;
+  }
+}

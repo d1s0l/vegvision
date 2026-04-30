@@ -1,0 +1,118 @@
+.card {
+  padding: 28px;
+  border-radius: 30px;
+  border: 1px solid color-mix(in srgb, var(--light-gray) 18%, transparent);
+  background: var(--element);
+  box-shadow: 0 18px 40px color-mix(in srgb, var(--dark-green) 7%, transparent);
+}
+
+.heading {
+  margin-bottom: 22px;
+
+  p,
+  h2 {
+    margin: 0;
+  }
+
+  p {
+    color: var(--check-green);
+    font-family: var(--font-inter);
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  h2 {
+    margin-top: 8px;
+    color: var(--dark-green);
+    font-family: var(--font-urbanist);
+    font-size: clamp(1.45rem, 2vw, 1.9rem);
+    line-height: 1.1;
+  }
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 16px;
+}
+
+.markerColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.marker {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+}
+
+.line {
+  width: 2px;
+  flex: 1;
+  margin-top: 8px;
+  background: color-mix(in srgb, var(--light-gray) 26%, transparent);
+}
+
+.content {
+  padding: 18px;
+  border-radius: 24px;
+  background: color-mix(in srgb, var(--background) 58%, var(--element));
+
+  h3,
+  p {
+    margin: 0;
+    font-family: var(--font-inter);
+  }
+
+  h3 {
+    margin-top: 8px;
+    color: var(--dark-green);
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  p {
+    margin-top: 8px;
+    color: var(--gray);
+    font-size: 0.93rem;
+    line-height: 1.6;
+  }
+}
+
+.time {
+  color: var(--check-green);
+  font-family: var(--font-inter);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.good {
+  background: color-mix(in srgb, var(--light-green) 64%, var(--element));
+  color: var(--check-green);
+}
+
+.warning {
+  background: color-mix(in srgb, var(--gold) 66%, var(--element));
+  color: var(--dark-green);
+}
+
+.critical {
+  background: color-mix(in srgb, var(--background-section) 20%, var(--element));
+  color: var(--background-section);
+}
+
+.neutral {
+  background: color-mix(in srgb, var(--element) 72%, var(--background));
+  color: var(--gray);
+}

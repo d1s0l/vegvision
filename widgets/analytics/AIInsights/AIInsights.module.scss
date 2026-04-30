@@ -1,0 +1,100 @@
+.card {
+  padding: 28px;
+  border-radius: 30px;
+  border: 1px solid color-mix(in srgb, var(--light-gray) 18%, transparent);
+  background: var(--element);
+  box-shadow: 0 18px 40px color-mix(in srgb, var(--dark-green) 7%, transparent);
+}
+
+.heading {
+  margin-bottom: 22px;
+
+  p,
+  h2 {
+    margin: 0;
+  }
+
+  p {
+    color: var(--check-green);
+    font-family: var(--font-inter);
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  h2 {
+    margin-top: 8px;
+    color: var(--dark-green);
+    font-family: var(--font-urbanist);
+    font-size: clamp(1.45rem, 2vw, 1.9rem);
+    line-height: 1.1;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.item {
+  display: flex;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 24px;
+
+  h3,
+  p {
+    margin: 0;
+    font-family: var(--font-inter);
+  }
+
+  h3 {
+    color: var(--dark-green);
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  p {
+    margin-top: 8px;
+    color: var(--gray);
+    font-size: 0.93rem;
+    line-height: 1.6;
+  }
+}
+
+.iconWrap {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+}
+
+.good {
+  background: color-mix(in srgb, var(--light-green) 54%, var(--element));
+
+  .iconWrap {
+    background: color-mix(in srgb, var(--element) 72%, var(--background));
+    color: var(--check-green);
+  }
+}
+
+.warning {
+  background: color-mix(in srgb, var(--gold) 64%, var(--element));
+
+  .iconWrap {
+    background: color-mix(in srgb, var(--element) 76%, var(--background));
+    color: var(--dark-green);
+  }
+}
+
+.critical {
+  background: color-mix(in srgb, var(--background-section) 18%, var(--element));
+
+  .iconWrap {
+    background: color-mix(in srgb, var(--element) 76%, var(--background));
+    color: var(--background-section);
+  }
+}

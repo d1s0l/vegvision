@@ -1,14 +1,15 @@
-import { Analiz } from "@/widgets/account/analysis";
-import { BlockSection } from "@/widgets/account/home-block-section";
-import { UserGreeting } from "@/widgets/account/user-greeting";
-import styles from "./LkHome.module.scss"
+import { DashboardPageContent } from "@/widgets/dashboard/dashboard-page/DashboardPageContent";
 
-export default function User(){
+interface UserPageProps {
+    params: Promise<{
+        username: string
+    }>
+}
+
+export default async function User({ params }: UserPageProps){
+    const { username } = await params
+
     return(
-        <div className={styles.home}>
-            <UserGreeting />
-            <BlockSection />
-            <Analiz />
-        </div>
+        <DashboardPageContent analyticsHref={`/u/${username}/analytics`} />
     )
 }

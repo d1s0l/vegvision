@@ -1,5 +1,5 @@
-import type { PropsWithChildren } from "react";
 import { Sidebar } from "@/widgets/account/sidebar";
+import styles from "./LkLayout.module.scss";
 
 export default function LkLayout({
     children,
@@ -7,11 +7,11 @@ export default function LkLayout({
     children: React.ReactNode;
 }>) {
     return(
-        <div className="flex">
+        <div className={styles.layout}>
             <Sidebar />
-            <div className="px-4 sm:px-6 md:px-8 py-4 sm:py-6 md:py-8 lg:px-12.5 lg:py-8 flex-1">
+            <main className={styles.content}>
                 {children}
-            </div>
+            </main>
         </div>
     )
 }
