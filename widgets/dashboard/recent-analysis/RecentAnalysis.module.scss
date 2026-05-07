@@ -206,4 +206,14 @@
   .item {
     grid-template-columns: 1fr;
   }
+
+  .thumb {
+    width: 100%;
+    max-width: 88px;
+    height: 88px;
+  }
+
+  .status {
+    white-space: normal;
+  }
 }

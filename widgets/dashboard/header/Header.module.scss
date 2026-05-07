@@ -19,6 +19,7 @@
   flex-direction: column;
   gap: 18px;
   max-width: 760px;
+  min-width: 0;
 
   h1 {
     margin: 0 0 10px;
@@ -57,6 +58,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
+  flex-shrink: 0;
 }
 
 .notificationButton {
@@ -168,5 +170,14 @@
   .profile {
     width: 100%;
     justify-content: space-between;
+  }
+
+  .profileMeta {
+    min-width: 0;
+  }
+
+  .profileMeta strong,
+  .profileMeta span {
+    overflow-wrap: anywhere;
   }
 }

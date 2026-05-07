@@ -205,4 +205,10 @@
   .preview {
     min-height: 140px;
   }
+
+  .cameraBadge,
+  .monitoringBadge,
+  .live {
+    white-space: normal;
+  }
 }

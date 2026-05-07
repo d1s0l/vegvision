@@ -43,7 +43,7 @@ export function HealthChart() {
             const y = chartHeight - (value / maxValue) * chartHeight;
 
             return (
-              <g key={value}>
+              <g key={value} className={styles.axisTickGroup}>
                 <line
                   x1="0"
                   x2={chartWidth}

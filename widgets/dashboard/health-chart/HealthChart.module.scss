@@ -77,12 +77,12 @@
 }
 
 .chartWrap {
-  overflow-x: auto;
+  width: 100%;
 }
 
 .chart {
-  min-width: 620px;
   width: 100%;
+  aspect-ratio: 31 / 14;
 }
 
 .gridLine {
@@ -96,6 +96,10 @@
   fill: var(--gray);
   font-family: var(--font-inter);
   font-size: 12px;
+}
+
+.bottomLabel {
+  text-anchor: middle;
 }
 
 .healthyLine,
@@ -137,5 +141,19 @@
 
   .heading {
     flex-direction: column;
+  }
+
+  .chart {
+    aspect-ratio: 1.2 / 1;
+  }
+
+  .axisLabel,
+  .bottomLabel {
+    font-size: 10px;
+  }
+
+  .axisTickGroup:nth-of-type(2) .axisLabel,
+  .axisTickGroup:nth-of-type(4) .axisLabel {
+    display: none;
   }
 }

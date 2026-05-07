@@ -13,18 +13,21 @@
   margin-left: 300px;
   padding: 32px;
   min-width: 0;
+  width: calc(100% - 300px);
 }
 
 @media (max-width: 1200px) {
   .content {
     margin-left: 250px;
     padding: 28px 24px;
+    width: calc(100% - 250px);
   }
 }
 
 @media (max-width: 1024px) {
   .content {
     margin-left: 0;
+    width: 100%;
     padding: 24px 20px 152px;
   }
 }

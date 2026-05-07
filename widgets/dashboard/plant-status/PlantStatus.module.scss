@@ -194,4 +194,25 @@
   .heading {
     display: grid;
   }
+
+  .chart {
+    max-width: 176px;
+  }
+
+  .chartCenter strong {
+    font-size: 2rem;
+  }
+
+  .chartCenter span {
+    font-size: 0.84rem;
+    text-align: center;
+  }
+
+  .legendTop {
+    grid-template-columns: auto 1fr;
+  }
+
+  .legendTop strong {
+    grid-column: 1 / -1;
+  }
 }

@@ -14,6 +14,7 @@
 
 .copy {
   max-width: 720px;
+  min-width: 0;
 
   h1 {
     margin: 18px 0 12px;
@@ -51,6 +52,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 14px;
+  flex-shrink: 0;
 }
 
 .filter {
@@ -118,5 +120,27 @@
 
   .filters {
     width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .header {
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .copy h1 {
+    margin: 14px 0 10px;
+  }
+
+  .filterButton {
+    min-height: 52px;
+    padding: 0 14px;
+  }
+
+  .filterIcon {
+    width: 32px;
+    height: 32px;
+    border-radius: 12px;
   }
 }

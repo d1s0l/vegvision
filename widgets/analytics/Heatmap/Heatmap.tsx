@@ -13,23 +13,25 @@ export function Heatmap({ rows }: HeatmapProps) {
         <h2>Визуальная карта состояния растений по зонам</h2>
       </div>
 
-      <div className={styles.grid}>
-        {rows.map((row) => (
-          <div key={row.id} className={styles.row}>
-            <span className={styles.rowTitle}>{row.title}</span>
-            <div className={styles.cells}>
-              {row.cells.map((cell) => (
-                <article
-                  key={cell.id}
-                  className={`${styles.cell} ${styles[cell.state]}`}
-                >
-                  <strong>{cell.label}</strong>
-                  <span>{cell.note}</span>
-                </article>
-              ))}
+      <div className={styles.gridWrap}>
+        <div className={styles.grid}>
+          {rows.map((row) => (
+            <div key={row.id} className={styles.row}>
+              <span className={styles.rowTitle}>{row.title}</span>
+              <div className={styles.cells}>
+                {row.cells.map((cell) => (
+                  <article
+                    key={cell.id}
+                    className={`${styles.cell} ${styles[cell.state]}`}
+                  >
+                    <strong>{cell.label}</strong>
+                    <span>{cell.note}</span>
+                  </article>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       <div className={styles.legend}>

@@ -5,7 +5,55 @@ interface MainChartProps {
   points: TrendPoint[];
 }
 
+const chartWidth = 720;
+const chartHeight = 320;
+const chartPadding = {
+  top: 32,
+  right: 28,
+  bottom: 52,
+  left: 40,
+};
+
+function createChartPoints(values: number[], maxValue: number) {
+  const drawableWidth = chartWidth - chartPadding.left - chartPadding.right;
+  const drawableHeight = chartHeight - chartPadding.top - chartPadding.bottom;
+
+  return values.map((value, index) => {
+    const x =
+      chartPadding.left +
+      (index / Math.max(values.length - 1, 1)) * drawableWidth;
+    const y =
+      chartPadding.top + drawableHeight - (value / Math.max(maxValue, 1)) * drawableHeight;
+
+    return { x, y };
+  });
+}
+
+function buildPath(points: Array<{ x: number; y: number }>) {
+  return points
+    .map((point, index) => `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`)
+    .join(" ");
+}
+
 export function MainChart({ points }: MainChartProps) {
+  const maxMetric = Math.max(...points.flatMap((point) => [point.alerts, point.resolved]));
+  const maxValue = Math.max(10, Math.ceil(maxMetric / 10) * 10);
+  const drawableWidth = chartWidth - chartPadding.left - chartPadding.right;
+  const axisBottom = chartHeight - chartPadding.bottom;
+  const chartTop = chartPadding.top;
+  const chartHeightInner = axisBottom - chartTop;
+  const yTicks = Array.from({ length: 5 }, (_, index) =>
+    Math.round((maxValue / 4) * index),
+  ).reverse();
+  const alertPoints = createChartPoints(
+    points.map((point) => point.alerts),
+    maxValue,
+  );
+  const resolvedPoints = createChartPoints(
+    points.map((point) => point.resolved),
+    maxValue,
+  );
+
   return (
     <section className={styles.card}>
       <div className={styles.heading}>
@@ -21,41 +69,81 @@ export function MainChart({ points }: MainChartProps) {
 
       <div className={styles.chartWrap}>
         <svg
-          viewBox="0 0 720 320"
+          viewBox={`0 0 ${chartWidth} ${chartHeight}`}
           className={styles.chart}
           role="img"
           aria-label="График аналитики заболеваний"
         >
-          <line x1="40" y1="40" x2="40" y2="270" className={styles.axis} />
-          <line x1="40" y1="270" x2="680" y2="270" className={styles.axis} />
-          <line x1="40" y1="90" x2="680" y2="90" className={styles.gridLine} />
-          <line x1="40" y1="150" x2="680" y2="150" className={styles.gridLine} />
-          <line x1="40" y1="210" x2="680" y2="210" className={styles.gridLine} />
+          {yTicks.map((tick) => {
+            const y = chartTop + chartHeightInner - (tick / maxValue) * chartHeightInner;
 
-          <path
-            d="M60 180 C120 165, 150 128, 170 120 S270 160, 280 160 S360 78, 390 76 S470 116, 500 118 S590 174, 610 174"
-            className={styles.alertPath}
+            return (
+              <g key={tick}>
+                <line
+                  x1={chartPadding.left}
+                  y1={y}
+                  x2={chartPadding.left + drawableWidth}
+                  y2={y}
+                  className={styles.gridLine}
+                />
+                <text
+                  x={chartPadding.left - 10}
+                  y={y + 4}
+                  className={styles.axisLabel}
+                >
+                  {tick}
+                </text>
+              </g>
+            );
+          })}
+
+          <line
+            x1={chartPadding.left}
+            y1={chartTop}
+            x2={chartPadding.left}
+            y2={axisBottom}
+            className={styles.axis}
           />
-          <path
-            d="M60 208 C110 198, 150 165, 170 158 S260 174, 280 172 S360 126, 390 124 S470 146, 500 144 S585 186, 610 186"
-            className={styles.resolvePath}
+          <line
+            x1={chartPadding.left}
+            y1={axisBottom}
+            x2={chartPadding.left + drawableWidth}
+            y2={axisBottom}
+            className={styles.axis}
           />
 
-          {[
-            ["60", "180", styles.alertDot],
-            ["170", "120", styles.alertDot],
-            ["280", "160", styles.alertDot],
-            ["390", "76", styles.alertDot],
-            ["500", "118", styles.alertDot],
-            ["610", "174", styles.alertDot],
-            ["60", "208", styles.resolveDot],
-            ["170", "158", styles.resolveDot],
-            ["280", "172", styles.resolveDot],
-            ["390", "124", styles.resolveDot],
-            ["500", "144", styles.resolveDot],
-            ["610", "186", styles.resolveDot],
-          ].map(([cx, cy, dotClass]) => (
-            <circle key={`${cx}-${cy}-${dotClass}`} cx={cx} cy={cy} r="5" className={dotClass} />
+          <path d={buildPath(alertPoints)} className={styles.alertPath} />
+          <path d={buildPath(resolvedPoints)} className={styles.resolvePath} />
+
+          {alertPoints.map((point, index) => (
+            <circle
+              key={`alert-${points[index]?.day ?? index}`}
+              cx={point.x}
+              cy={point.y}
+              r="5"
+              className={styles.alertDot}
+            />
+          ))}
+
+          {resolvedPoints.map((point, index) => (
+            <circle
+              key={`resolved-${points[index]?.day ?? index}`}
+              cx={point.x}
+              cy={point.y}
+              r="5"
+              className={styles.resolveDot}
+            />
+          ))}
+
+          {points.map((point, index) => (
+            <text
+              key={`label-${point.day}`}
+              x={alertPoints[index]?.x ?? chartPadding.left}
+              y={chartHeight - 18}
+              className={styles.bottomLabel}
+            >
+              {point.day}
+            </text>
           ))}
         </svg>
       </div>

@@ -84,6 +84,12 @@
   color: var(--check-green);
 }
 
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 640px) {
   .card {
     padding: 22px;

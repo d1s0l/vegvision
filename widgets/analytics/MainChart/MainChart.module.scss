@@ -60,14 +60,22 @@
 }
 
 .chartWrap {
+  width: 100%;
+  min-width: 0;
   padding: 22px 18px 12px;
   border-radius: 24px;
   background: color-mix(in srgb, var(--background) 58%, var(--element));
 }
 
 .chart {
+  display: block;
   width: 100%;
   height: auto;
+}
+
+.axis,
+.gridLine {
+  vector-effect: non-scaling-stroke;
 }
 
 .axis {
@@ -81,12 +89,28 @@
   stroke-dasharray: 6 8;
 }
 
+.axisLabel,
+.bottomLabel {
+  fill: var(--gray);
+  font-family: var(--font-inter);
+  font-size: 12px;
+}
+
+.axisLabel {
+  text-anchor: end;
+}
+
+.bottomLabel {
+  text-anchor: middle;
+}
+
 .alertPath,
 .resolvePath {
   fill: none;
   stroke-width: 5;
   stroke-linecap: round;
   stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
 }
 
 .alertPath {
@@ -95,6 +119,11 @@
 
 .resolvePath {
   stroke: var(--check-green);
+}
+
+.alertDot,
+.resolveDot {
+  vector-effect: non-scaling-stroke;
 }
 
 .alertDot {
@@ -117,6 +146,7 @@
 }
 
 .labelItem {
+  min-width: 0;
   padding: 14px;
   border-radius: 18px;
   background: color-mix(in srgb, var(--element) 76%, var(--background));
@@ -137,6 +167,7 @@
     margin-top: 6px;
     color: var(--gray);
     font-size: 0.84rem;
+    line-height: 1.45;
   }
 }
 
@@ -146,6 +177,39 @@
   }
 
   .labels {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: 22px;
+    border-radius: 24px;
+  }
+
+  .chartWrap {
+    padding: 18px 14px 10px;
+  }
+
+  .axisLabel,
+  .bottomLabel {
+    font-size: 10px;
+  }
+
+  .labels {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(132px, 1fr);
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    margin-inline: -2px;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .labelItem {
+    scroll-snap-align: start;
+    min-height: 100%;
   }
 }
