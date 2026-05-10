@@ -1,18 +1,22 @@
 'use client'
 
-import Link from "next/link";
 import { BarChart3, CircleHelp, Home, Settings } from "lucide-react";
 import { useParams, usePathname } from "next/navigation";
 import { SectionSidebar } from "../Section/Section";
 import styles from "./Links.module.scss"
 
-export function LinksPart() {
+interface LinksPartProps {
+    onNavigate?: () => void;
+}
+
+export function LinksPart({ onNavigate }: LinksPartProps) {
     const pathname = usePathname();
     const params = useParams<{ username?: string }>();
     const username = typeof params.username === "string" ? params.username : "";
 
     const homeHref = username ? `/u/${username}` : "/dashboard";
     const analyticsHref = username ? `/u/${username}/analytics` : "/dashboard/analytics";
+    const settingsHref = username ? `/u/${username}/settings` : "/dashboard";
 
     const navItems = [
         {
@@ -30,8 +34,8 @@ export function LinksPart() {
         {
             icon: <Settings size={26} />,
             label: "Настройки",
-            href: homeHref,
-            active: false,
+            href: settingsHref,
+            active: pathname === settingsHref,
         },
         {
             icon: <CircleHelp size={26} />,
@@ -50,14 +54,9 @@ export function LinksPart() {
                         label={item.label}
                         href={item.href}
                         active={item.active}
+                        onClick={onNavigate}
                     />
                 ))}
-                <Link href={homeHref} className={styles.logoPhone}>
-                    <img
-                        src="/logo/logo_sidebar.svg"
-                        alt="Logo Icon"
-                    />
-                </Link>
                 {navItems.slice(2).map((item) => (
                     <SectionSidebar
                         key={item.label}
@@ -65,6 +64,7 @@ export function LinksPart() {
                         label={item.label}
                         href={item.href}
                         active={item.active}
+                        onClick={onNavigate}
                     />
                 ))}
             </div>

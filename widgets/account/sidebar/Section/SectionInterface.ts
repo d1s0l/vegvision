@@ -3,4 +3,5 @@ export interface SectionProps {
     label: string
     href: string
     active: boolean
+    onClick?: () => void
 }
