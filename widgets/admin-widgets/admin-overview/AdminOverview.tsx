@@ -11,9 +11,9 @@ import {
 import { adminPanelData } from "@/entities/admin";
 import { adminShellStyles } from "@/shared/ui/admin-shell";
 import { StatCard } from "@/shared/ui/stat-card";
-import { ActivityFeed } from "@/widgets/admin-activity-feed";
-import { QuickActions } from "@/widgets/admin-quick-actions";
-import { SystemHealth } from "@/widgets/admin-system-health";
+import { ActivityFeed } from "@/widgets/admin-widgets/admin-activity-feed";
+import { QuickActions } from "@/widgets/admin-widgets/admin-quick-actions";
+import { SystemHealth } from "@/widgets/admin-widgets/admin-system-health";
 
 const icons = [UsersRound, CreditCard, Factory, Camera, Activity, ShieldCheck, Globe, Cpu];
 

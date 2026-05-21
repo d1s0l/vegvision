@@ -1,7 +1,7 @@
 import { AlertTriangle } from "lucide-react";
 import { adminPanelData } from "@/entities/admin";
 import { adminShellStyles } from "@/shared/ui/admin-shell";
-import { ActivityFeed } from "@/widgets/admin-activity-feed";
+import { ActivityFeed } from "@/widgets/admin-widgets/admin-activity-feed";
 
 const severityLabels = ["critical", "warning", "info"] as const;
 

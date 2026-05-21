@@ -2,7 +2,7 @@ import { Building2 } from "lucide-react";
 import { adminPanelData } from "@/entities/admin";
 import type { ClientSummary } from "@/entities/client";
 import { adminShellStyles } from "@/shared/ui/admin-shell";
-import { AdminDataTable, type AdminTableColumn } from "@/widgets/admin-data-table";
+import { AdminDataTable, type AdminTableColumn } from "@/widgets/admin-widgets/admin-data-table";
 
 const columns: AdminTableColumn<ClientSummary>[] = [
   { id: "company", header: "Компания", render: (row) => row.companyName },

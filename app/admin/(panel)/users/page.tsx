@@ -2,7 +2,7 @@ import { Users } from "lucide-react";
 import { adminPanelData } from "@/entities/admin";
 import type { InternalUserRow } from "@/entities/admin";
 import { adminShellStyles } from "@/shared/ui/admin-shell";
-import { AdminDataTable, type AdminTableColumn } from "@/widgets/admin-data-table";
+import { AdminDataTable, type AdminTableColumn } from "@/widgets/admin-widgets/admin-data-table";
 
 const columns: AdminTableColumn<InternalUserRow>[] = [
   { id: "name", header: "Имя", render: (row) => row.name },

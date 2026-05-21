@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { AdminAuthProvider } from "@/features/admin-auth";
 import { getAdminSessionFromCookies } from "@/features/admin-auth/model/server-session";
 import { ADMIN_LOGIN_PATH } from "@/shared/lib/admin-auth/constants";
-import { AdminShell } from "@/widgets/admin-shell";
+import { AdminShell } from "@/widgets/admin-widgets/admin-shell";
 
 export default async function AdminPanelLayout({
   children,

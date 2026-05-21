@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { adminShellStyles } from "@/shared/ui/admin-shell";
-import { AdminHeader } from "@/widgets/admin-header";
-import { AdminSidebar } from "@/widgets/admin-sidebar";
+import { AdminHeader } from "@/widgets/admin-widgets/admin-header";
+import { AdminSidebar } from "@/widgets/admin-widgets/admin-sidebar";
 
 interface AdminShellProps {
   children: ReactNode;

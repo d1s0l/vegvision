@@ -1,6 +1,6 @@
 import { BarChart3 } from "lucide-react";
 import { adminShellStyles } from "@/shared/ui/admin-shell";
-import { AdminOverview } from "@/widgets/admin-overview";
+import { AdminOverview } from "@/widgets/admin-widgets/admin-overview";
 
 export default function AdminDashboardPage() {
   return (

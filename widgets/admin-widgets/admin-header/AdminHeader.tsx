@@ -22,7 +22,7 @@ export function AdminHeader() {
         </button>
         <div className={styles.profile}>
           <div>
-            <strong>{admin?.name ?? "Администратор"}</strong>
+            <strong>{"Администратор"}</strong>
           </div>
         </div>
         <AdminLogoutButton />
