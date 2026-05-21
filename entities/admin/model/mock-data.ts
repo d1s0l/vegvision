@@ -23,10 +23,8 @@ export const mockAdminCredentials = {
 
 const currentAdmin: AdminUser = {
   id: "admin-1",
-  name: "Елена Воронина",
   email: mockAdminCredentials.email,
   role: "owner",
-  avatar: "/tomato-leaf.png",
   lastLogin: "Сегодня, 09:18",
 };
 

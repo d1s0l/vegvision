@@ -21,10 +21,8 @@ export function AdminHeader() {
           <Bell size={18} />
         </button>
         <div className={styles.profile}>
-          <Image src={admin?.avatar ?? "/tomato-leaf.png"} alt={admin?.name ?? "Администратор"} width={42} height={42} />
           <div>
             <strong>{admin?.name ?? "Администратор"}</strong>
-            <span>{admin?.role ?? "owner"}</span>
           </div>
         </div>
         <AdminLogoutButton />

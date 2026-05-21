@@ -6,10 +6,8 @@ export type AdminRole = "owner" | "support" | "ops" | "ml-admin";
 
 export interface AdminUser {
   id: string;
-  name: string;
   email: string;
   role: AdminRole;
-  avatar: string;
   lastLogin: string;
 }
 
