@@ -34,10 +34,7 @@ export function AdminLoginForm() {
           Внутренний доступ
         </span>
         <h1>VegVision Admin</h1>
-        <p>
-          Защищённый вход для владельцев платформы, операционной команды, биллинга и ML-контроля.
-          Используйте тестовые учётные данные, чтобы открыть внутреннюю admin panel.
-        </p>
+        
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>
