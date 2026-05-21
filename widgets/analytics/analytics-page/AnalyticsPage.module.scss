@@ -26,9 +26,14 @@
   min-width: 0;
 }
 
+@media (max-width: 1680px) {
+  .secondaryGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 1280px) {
   .primaryGrid,
-  .secondaryGrid,
   .tertiaryGrid {
     grid-template-columns: 1fr;
   }

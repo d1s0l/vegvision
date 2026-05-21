@@ -68,94 +68,98 @@ export function MainChart({ points }: MainChartProps) {
       </div>
 
       <div className={styles.chartWrap}>
-        <svg
-          viewBox={`0 0 ${chartWidth} ${chartHeight}`}
-          className={styles.chart}
-          role="img"
-          aria-label="График аналитики заболеваний"
-        >
-          {yTicks.map((tick) => {
-            const y = chartTop + chartHeightInner - (tick / maxValue) * chartHeightInner;
-
-            return (
-              <g key={tick}>
-                <line
-                  x1={chartPadding.left}
-                  y1={y}
-                  x2={chartPadding.left + drawableWidth}
-                  y2={y}
-                  className={styles.gridLine}
-                />
-                <text
-                  x={chartPadding.left - 10}
-                  y={y + 4}
-                  className={styles.axisLabel}
-                >
-                  {tick}
-                </text>
-              </g>
-            );
-          })}
-
-          <line
-            x1={chartPadding.left}
-            y1={chartTop}
-            x2={chartPadding.left}
-            y2={axisBottom}
-            className={styles.axis}
-          />
-          <line
-            x1={chartPadding.left}
-            y1={axisBottom}
-            x2={chartPadding.left + drawableWidth}
-            y2={axisBottom}
-            className={styles.axis}
-          />
-
-          <path d={buildPath(alertPoints)} className={styles.alertPath} />
-          <path d={buildPath(resolvedPoints)} className={styles.resolvePath} />
-
-          {alertPoints.map((point, index) => (
-            <circle
-              key={`alert-${points[index]?.day ?? index}`}
-              cx={point.x}
-              cy={point.y}
-              r="5"
-              className={styles.alertDot}
-            />
-          ))}
-
-          {resolvedPoints.map((point, index) => (
-            <circle
-              key={`resolved-${points[index]?.day ?? index}`}
-              cx={point.x}
-              cy={point.y}
-              r="5"
-              className={styles.resolveDot}
-            />
-          ))}
-
-          {points.map((point, index) => (
-            <text
-              key={`label-${point.day}`}
-              x={alertPoints[index]?.x ?? chartPadding.left}
-              y={chartHeight - 18}
-              className={styles.bottomLabel}
+        <div className={styles.scrollArea}>
+          <div className={styles.chartInner}>
+            <svg
+              viewBox={`0 0 ${chartWidth} ${chartHeight}`}
+              className={styles.chart}
+              role="img"
+              aria-label="График аналитики заболеваний"
             >
-              {point.day}
-            </text>
-          ))}
-        </svg>
-      </div>
+              {yTicks.map((tick) => {
+                const y = chartTop + chartHeightInner - (tick / maxValue) * chartHeightInner;
 
-      <div className={styles.labels}>
-        {points.map((point) => (
-          <div key={point.day} className={styles.labelItem}>
-            <strong>{point.day}</strong>
-            <span>{point.alerts} сигналов</span>
-            <span>{point.resolved} закрыто</span>
+                return (
+                  <g key={tick}>
+                    <line
+                      x1={chartPadding.left}
+                      y1={y}
+                      x2={chartPadding.left + drawableWidth}
+                      y2={y}
+                      className={styles.gridLine}
+                    />
+                    <text
+                      x={chartPadding.left - 10}
+                      y={y + 4}
+                      className={styles.axisLabel}
+                    >
+                      {tick}
+                    </text>
+                  </g>
+                );
+              })}
+
+              <line
+                x1={chartPadding.left}
+                y1={chartTop}
+                x2={chartPadding.left}
+                y2={axisBottom}
+                className={styles.axis}
+              />
+              <line
+                x1={chartPadding.left}
+                y1={axisBottom}
+                x2={chartPadding.left + drawableWidth}
+                y2={axisBottom}
+                className={styles.axis}
+              />
+
+              <path d={buildPath(alertPoints)} className={styles.alertPath} />
+              <path d={buildPath(resolvedPoints)} className={styles.resolvePath} />
+
+              {alertPoints.map((point, index) => (
+                <circle
+                  key={`alert-${points[index]?.day ?? index}`}
+                  cx={point.x}
+                  cy={point.y}
+                  r="5"
+                  className={styles.alertDot}
+                />
+              ))}
+
+              {resolvedPoints.map((point, index) => (
+                <circle
+                  key={`resolved-${points[index]?.day ?? index}`}
+                  cx={point.x}
+                  cy={point.y}
+                  r="5"
+                  className={styles.resolveDot}
+                />
+              ))}
+
+              {points.map((point, index) => (
+                <text
+                  key={`label-${point.day}`}
+                  x={alertPoints[index]?.x ?? chartPadding.left}
+                  y={chartHeight - 18}
+                  className={styles.bottomLabel}
+                >
+                  {point.day}
+                </text>
+              ))}
+            </svg>
+
+            <div className={styles.labels}>
+              {points.map((point) => (
+                <div key={point.day} className={styles.labelItem}>
+                  <strong>{point.day}</strong>
+                  <span>{point.alerts} сигналов</span>
+                  <span>{point.resolved} закрыто</span>
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
+        </div>
       </div>
     </section>
   );

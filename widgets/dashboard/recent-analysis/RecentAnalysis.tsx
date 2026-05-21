@@ -28,6 +28,8 @@ export function RecentAnalysis({
           Все анализы
         </Link>
       </div>
+      
+      <div className={styles.line}></div>
 
       <div className={styles.list}>
         {recentAnalyses.map((analysis) => (
@@ -53,7 +55,6 @@ export function RecentAnalysis({
                   {statusMap[analysis.status]}
                 </span>
               </div>
-
               <dl className={styles.meta}>
                 <div>
                   <dt>
@@ -80,6 +81,7 @@ export function RecentAnalysis({
             </div>
           </article>
         ))}
+        
       </div>
     </section>
   );

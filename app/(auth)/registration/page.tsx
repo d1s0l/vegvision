@@ -19,6 +19,7 @@ export default function Registraion() {
             <Image
               src="./logo/logo_auth.svg"
               alt="Logo"
+              className={styles.logoImage}
               width={79}
               height={65}
             />

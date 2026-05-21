@@ -63,7 +63,14 @@
   gap: 16px;
 }
 
+.line {
+  height: 1px;
+  margin: 18px 0;
+  background: color-mix(in srgb, var(--light-gray) 18%, transparent);
+}
+
 .item {
+  position: relative;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   gap: 18px;
@@ -77,6 +84,16 @@
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 20px 32px color-mix(in srgb, var(--check-green) 10%, transparent);
+  }
+
+  &:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: -8px;
+    height: 1px;
+    background: color-mix(in srgb, var(--light-gray) 18%, transparent);
   }
 }
 

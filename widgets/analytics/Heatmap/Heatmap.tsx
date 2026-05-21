@@ -1,3 +1,7 @@
+ "use client";
+
+import Link from "next/link";
+import { useParams } from "next/navigation";
 import type { HeatmapRow } from "@/entities/analytics";
 import styles from "./Heatmap.module.scss";
 
@@ -6,6 +10,10 @@ interface HeatmapProps {
 }
 
 export function Heatmap({ rows }: HeatmapProps) {
+  const params = useParams<{ username?: string }>();
+  const username = typeof params.username === "string" ? params.username : "";
+  const analysisHref = username ? `/u/${username}/analysis` : "/dashboard/analysis";
+
   return (
     <section className={styles.card}>
       <div className={styles.heading}>
@@ -34,10 +42,17 @@ export function Heatmap({ rows }: HeatmapProps) {
         </div>
       </div>
 
+
       <div className={styles.legend}>
         <span><i className={styles.good} /> Здорово</span>
         <span><i className={styles.warning} /> Внимание</span>
         <span><i className={styles.critical} /> Критично</span>
+      </div>
+      
+      <div className={styles.actionRow}>
+        <Link href={analysisHref} className={styles.moreLink}>
+          Подробнее
+        </Link>
       </div>
     </section>
   );
