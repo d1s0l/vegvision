@@ -1,13 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { Bell, Search } from "lucide-react";
-import { useAdminAuth } from "@/features/admin-auth";
 import { AdminLogoutButton } from "@/features/logout";
 import styles from "./AdminHeader.module.scss";
 
 export function AdminHeader() {
-  const { admin } = useAdminAuth();
 
   return (
     <header className={styles.header}>
