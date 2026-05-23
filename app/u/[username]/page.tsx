@@ -10,6 +10,9 @@ export default async function User({ params }: UserPageProps){
     const { username } = await params
 
     return(
-        <DashboardPageContent analyticsHref={`/u/${username}/analytics`} />
+        <DashboardPageContent
+            analyticsHref={`/u/${username}/analytics`}
+            homeHref={`/u/${username}`}
+        />
     )
 }

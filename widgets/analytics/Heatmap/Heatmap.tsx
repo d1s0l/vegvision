@@ -12,7 +12,7 @@ interface HeatmapProps {
 export function Heatmap({ rows }: HeatmapProps) {
   const params = useParams<{ username?: string }>();
   const username = typeof params.username === "string" ? params.username : "";
-  const analysisHref = username ? `/u/${username}/analysis` : "/dashboard/analysis";
+  const analysisHref = username ? `/u/${username}/analysis` : "/";
 
   return (
     <section className={styles.card}>

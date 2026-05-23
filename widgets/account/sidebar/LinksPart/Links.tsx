@@ -14,9 +14,9 @@ export function LinksPart({ onNavigate }: LinksPartProps) {
     const params = useParams<{ username?: string }>();
     const username = typeof params.username === "string" ? params.username : "";
 
-    const homeHref = username ? `/u/${username}` : "/dashboard";
-    const analyticsHref = username ? `/u/${username}/analytics` : "/dashboard/analytics";
-    const settingsHref = username ? `/u/${username}/settings` : "/dashboard";
+    const homeHref = username ? `/u/${username}` : "/";
+    const analyticsHref = username ? `/u/${username}/analytics` : "/";
+    const settingsHref = username ? `/u/${username}/settings` : "/";
 
     const navItems = [
         {

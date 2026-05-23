@@ -61,48 +61,6 @@
   flex-shrink: 0;
 }
 
-.notificationButton {
-  position: relative;
-  width: 56px;
-  height: 56px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 0;
-  border-radius: 20px;
-  background: var(--element);
-  color: var(--dark-green);
-  cursor: pointer;
-  transition:
-    transform 0.25s ease,
-    background-color 0.25s ease,
-    box-shadow 0.25s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-    background: color-mix(in srgb, var(--light-green) 68%, var(--element));
-    box-shadow: 0 16px 30px color-mix(in srgb, var(--check-green) 12%, transparent);
-  }
-}
-
-.notificationDot {
-  position: absolute;
-  top: 7px;
-  right: 7px;
-  min-width: 20px;
-  height: 20px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding-inline: 4px;
-  border-radius: 999px;
-  background: var(--background-section);
-  color: var(--element);
-  font-family: var(--font-inter);
-  font-size: 0.72rem;
-  font-weight: 700;
-}
-
 .profile {
   display: flex;
   align-items: center;

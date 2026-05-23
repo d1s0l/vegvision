@@ -1,0 +1,51 @@
+.panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  z-index: 40;
+  width: min(420px, calc(100vw - 32px));
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(0.98);
+  transform-origin: top right;
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease,
+    visibility 0.22s ease;
+}
+
+.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+@media (max-width: 1024px) {
+  .panel {
+    width: min(420px, calc(100vw - 40px));
+  }
+}
+
+@media (max-width: 640px) {
+  .panel {
+    position: fixed;
+    top: 84px;
+    right: 16px;
+    left: 16px;
+    width: auto;
+    transform: translateY(-10px) scale(0.98);
+    transform-origin: top center;
+  }
+
+  .open {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 380px) {
+  .panel {
+    top: 76px;
+    right: 10px;
+    left: 10px;
+  }
+}

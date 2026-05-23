@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { Bell, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { useCurrentUser } from "@/entities/user";
+import { NotificationBell } from "@/features/notifications-dropdown";
 import styles from "./Header.module.scss";
 
 export function DashboardHeader() {
@@ -26,14 +27,7 @@ export function DashboardHeader() {
       </div>
 
       <div className={styles.actions}>
-        <button
-          type="button"
-          className={styles.notificationButton}
-          aria-label="Открыть уведомления"
-        >
-          <Bell size={20} />
-          <span className={styles.notificationDot}>3</span>
-        </button>
+        <NotificationBell />
 
         <div className={styles.profile}>
           <div className={styles.avatar}>

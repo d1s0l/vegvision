@@ -15,7 +15,7 @@ interface RecentAnalysisProps {
 }
 
 export function RecentAnalysis({
-  analyticsHref = "/dashboard/analytics",
+  analyticsHref = "/",
 }: RecentAnalysisProps) {
   return (
     <section className={styles.card}>

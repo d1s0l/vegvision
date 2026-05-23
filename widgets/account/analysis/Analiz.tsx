@@ -134,7 +134,7 @@ interface AnalizProps {
   dashboardHref?: string;
 }
 
-export function Analiz({ dashboardHref = "/dashboard" }: AnalizProps) {
+export function Analiz({ dashboardHref = "/" }: AnalizProps) {
   return (
     <div className={styles.page}>
       <section className={styles.hero}>

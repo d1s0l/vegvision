@@ -18,10 +18,12 @@ const iconMap: Record<string, LucideIcon> = {
 
 interface QuickActionsProps {
   analyticsHref?: string;
+  homeHref?: string;
 }
 
 export function QuickActions({
-  analyticsHref = "/dashboard/analytics",
+  analyticsHref = "/",
+  homeHref = "/",
 }: QuickActionsProps) {
   return (
     <section className={styles.card}>
@@ -36,7 +38,7 @@ export function QuickActions({
           const href =
             action.id === "analytics" || action.id === "history"
               ? analyticsHref
-              : action.href;
+              : homeHref;
 
           return (
             <Link key={action.id} href={href} className={styles.action}>

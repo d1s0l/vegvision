@@ -198,25 +198,25 @@ export const quickActions: QuickActionItem[] = [
     id: "analytics",
     title: "Просмотр аналитики",
     description: "Открыть сводные данные по теплицам и культурам",
-    href: "/dashboard",
+    href: "/",
   },
   {
     id: "reports",
     title: "Открыть отчёты",
     description: "Перейти к недельным и месячным отчётам",
-    href: "/dashboard",
+    href: "/",
   },
   {
     id: "history",
     title: "История мониторинга",
     description: "Посмотреть ленту прошлых анализов и событий",
-    href: "/dashboard",
+    href: "/",
   },
   {
     id: "export",
     title: "Экспорт данных",
     description: "Выгрузить актуальную аналитику в CSV",
-    href: "/dashboard",
+    href: "/",
   },
 ];
 

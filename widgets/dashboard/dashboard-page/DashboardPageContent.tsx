@@ -12,10 +12,12 @@ import styles from "./DashboardPageContent.module.scss";
 
 interface DashboardPageContentProps {
   analyticsHref?: string;
+  homeHref?: string;
 }
 
 export function DashboardPageContent({
-  analyticsHref = "/dashboard/analytics",
+  analyticsHref = "/",
+  homeHref = "/",
 }: DashboardPageContentProps) {
   return (
     <div className={styles.page}>
@@ -33,7 +35,7 @@ export function DashboardPageContent({
       </div>
 
       <div className={styles.bottomGrid}>
-        <QuickActions analyticsHref={analyticsHref} />
+        <QuickActions analyticsHref={analyticsHref} homeHref={homeHref} />
         <GreenhouseStatus />
       </div>
     </div>
