@@ -1,12 +1,12 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import { Camera, CloudRain, Eye, Thermometer, Waves } from "lucide-react";
 import { greenhouseStatuses } from "@/shared/constants/mockData";
 import styles from "./GreenhouseStatus.module.scss";
 
 const metricIconMap = {
-  "Температура": Thermometer,
-  "Влажность": Waves,
-  "Осадки": CloudRain,
+  Температура: Thermometer,
+  Влажность: Waves,
+  Осадки: CloudRain,
 } as const;
 
 export function GreenhouseStatus() {
@@ -55,7 +55,9 @@ export function GreenhouseStatus() {
 
               <div className={styles.metrics}>
                 {greenhouse.metrics.map((metric) => {
-                  const Icon = metricIconMap[metric.label as keyof typeof metricIconMap];
+                  const Icon =
+                    metricIconMap[metric.label as keyof typeof metricIconMap] ??
+                    Eye;
 
                   return (
                     <div key={metric.label} className={styles.metric}>

@@ -3,6 +3,8 @@ import { NotificationToast } from "@/features/toast-notification";
 import { Sidebar } from "@/widgets/account/sidebar";
 import styles from "./LkLayout.module.scss";
 
+export const revalidate = 60;
+
 export default function LkLayout({
   children,
 }: Readonly<{

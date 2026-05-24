@@ -1,20 +1,14 @@
-import { redirect } from "next/navigation";
+import { adminPanelData } from "@/entities/admin";
 import { AdminAuthProvider } from "@/features/admin-auth";
-import { getAdminSessionFromCookies } from "@/features/admin-auth/model/server-session";
-import { ADMIN_LOGIN_PATH } from "@/shared/lib/admin-auth/constants";
 import { AdminShell } from "@/widgets/admin-widgets/admin-shell";
 
-export default async function AdminPanelLayout({
+export const revalidate = 60;
+
+export default function AdminPanelLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const session = await getAdminSessionFromCookies();
-
-  if (!session) {
-    redirect(ADMIN_LOGIN_PATH);
-  }
-
   return (
-    <AdminAuthProvider initialAdmin={session.admin}>
+    <AdminAuthProvider initialAdmin={adminPanelData.currentAdmin}>
       <AdminShell>{children}</AdminShell>
     </AdminAuthProvider>
   );

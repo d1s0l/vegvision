@@ -35,7 +35,7 @@ export function DashboardPageContent({
       </div>
 
       <div className={styles.bottomGrid}>
-        <QuickActions analyticsHref={analyticsHref} homeHref={homeHref} />
+        {/* <QuickActions analyticsHref={analyticsHref} homeHref={homeHref} /> */}
         <GreenhouseStatus />
       </div>
     </div>

@@ -104,11 +104,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  margin-top: 20px;
   min-height: 50px;
   padding: 0 20px;
   border-radius: 20px;
-  background: var(--light-gray);
-  color: var(--element);
+  border: 1px solid var(--dark-green);
+  
+  color: var(--dark-green);
   font-family: var(--font-inter);
   font-size: 0.8rem;
   font-weight: 700;
@@ -119,7 +121,7 @@
 
   &:hover {
     transform: translateY(-1px);
-    background: var(--gray );
+    background: var(--element);
   }
 }
 

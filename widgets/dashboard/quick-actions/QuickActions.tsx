@@ -34,7 +34,7 @@ export function QuickActions({
 
       <div className={styles.grid}>
         {quickActions.map((action) => {
-          const Icon = iconMap[action.id];
+          const Icon = iconMap[action.id] ?? FileText;
           const href =
             action.id === "analytics" || action.id === "history"
               ? analyticsHref

@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import styles from "@/shared/ui/auth-shell/AuthShell.module.scss";
 import { ButtonBack } from "@/shared/ui/button-back";
 import { LoginForm } from "@/features/auth/login-form";
+import { UserAuthProvider } from "@/features/user-auth";
 
 export const metadata: Metadata = {
   title: "Авторизация",
@@ -25,7 +26,9 @@ export default function Login() {
             />
             <h1>VegVision</h1>
           </Link>
-          <LoginForm />
+          <UserAuthProvider>
+            <LoginForm />
+          </UserAuthProvider>
           <div className={styles.regist}>
             <span>Нет аккаунта?</span>
             <Link href="/registration">Регистрация</Link>

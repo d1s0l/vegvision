@@ -99,9 +99,14 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
 
   useEffect(() => {
     const controller = new AbortController();
+    let isMounted = true;
 
     getNotifications(controller.signal)
       .then((incoming) => {
+        if (!isMounted) {
+          return;
+        }
+
         const next = incoming.sort(
           (left, right) =>
             new Date(right.createdAt).getTime() -
@@ -112,9 +117,23 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
         isInitializedRef.current = true;
         setNotifications(next);
       })
-      .finally(() => setIsLoading(false));
+      .catch((error) => {
+        if (error instanceof DOMException && error.name === "AbortError") {
+          return;
+        }
 
-    return () => controller.abort();
+        console.error(error);
+      })
+      .finally(() => {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
   }, []);
 
   useEffect(() => {

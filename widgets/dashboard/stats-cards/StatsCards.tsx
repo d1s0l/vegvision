@@ -19,7 +19,7 @@ export function StatsCards() {
   return (
     <section className={styles.section} aria-label="Ключевая статистика">
       {dashboardStats.map((stat) => {
-        const Icon = iconMap[stat.id];
+        const Icon = iconMap[stat.id] ?? Activity;
 
         return (
           <article key={stat.id} className={styles.card}>

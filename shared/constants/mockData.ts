@@ -78,10 +78,10 @@ export const dashboardStats: DashboardStat[] = [
   },
   {
     id: "active-analyses",
-    title: "Активные анализы",
-    value: "128",
-    detail: "Потоки от ML камер в работе",
-    trend: "24 камеры онлайн",
+    title: "Активные камеры",
+    value: "1",
+    detail: "Одна камера передает поток для ML анализа",
+    trend: "Активна одна камера",
   },
   {
     id: "issues",
@@ -185,11 +185,11 @@ export const recommendations: RecommendationItem[] = [
   },
   {
     id: "recommendation-3",
-    title: "Сформировать отчёт для агронома",
+    title: "Сформировать отчет для агронома",
     description:
       "Система собрала 6 кейсов с повторяющимися паттернами, полезными для утреннего обхода.",
     tone: "info",
-    ctaLabel: "Скачать отчёт",
+    ctaLabel: "Скачать отчет",
   },
 ];
 
@@ -202,8 +202,8 @@ export const quickActions: QuickActionItem[] = [
   },
   {
     id: "reports",
-    title: "Открыть отчёты",
-    description: "Перейти к недельным и месячным отчётам",
+    title: "Открыть отчеты",
+    description: "Перейти к недельным и месячным отчетам",
     href: "/",
   },
   {
@@ -225,8 +225,8 @@ export const greenhouseStatuses: GreenhouseStatusItem[] = [
     id: "greenhouse-1",
     name: "Теплица A-12",
     status: "Стабильный режим",
-    cameraStatus: "8 из 8 камер активны",
-    monitoringState: "Онлайн 24/7",
+    cameraStatus: "1 камера активна",
+    monitoringState: "Поток данных стабилен",
     image: "/greenhouse.svg",
     metrics: [
       { label: "Температура", value: "24°C" },
@@ -238,8 +238,8 @@ export const greenhouseStatuses: GreenhouseStatusItem[] = [
     id: "greenhouse-2",
     name: "Теплица B-04",
     status: "Требуется внимание",
-    cameraStatus: "6 из 7 камер активны",
-    monitoringState: "1 камера на диагностике",
+    cameraStatus: "Камера на диагностике",
+    monitoringState: "Нужна ручная проверка",
     image: "/greenhouse.svg",
     metrics: [
       { label: "Температура", value: "26°C" },
@@ -251,8 +251,8 @@ export const greenhouseStatuses: GreenhouseStatusItem[] = [
     id: "greenhouse-3",
     name: "Теплица C-07",
     status: "Оптимальные условия",
-    cameraStatus: "5 из 5 камер активны",
-    monitoringState: "Поток данных стабилен",
+    cameraStatus: "Камера ожидает подключения",
+    monitoringState: "Поток данных недоступен",
     image: "/greenhouse.svg",
     metrics: [
       { label: "Температура", value: "22°C" },
