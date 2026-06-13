@@ -33,6 +33,10 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+
+# local Yandex Cloud API Gateway spec with real resource ids
+gateway.yaml
 
 # vercel
 .vercel
