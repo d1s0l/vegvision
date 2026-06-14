@@ -32,7 +32,7 @@ export function DashboardHeader() {
         <div className={styles.profile}>
           <div className={styles.avatar}>
             <Image
-              src="/tomato-leaf.png"
+              src="/tomato-leaf.jpg"
               alt="Аватар пользователя"
               width={56}
               height={56}

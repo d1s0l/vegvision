@@ -7,6 +7,10 @@ import { RegistrationForm } from "@/features/auth/registration-form";
 
 export const metadata: Metadata = {
   title: "Регистрация",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function Registraion() {

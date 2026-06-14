@@ -1,10 +1,6 @@
-export const revalidate = 60;
-export const dynamic = "force-static";
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
 export const dynamicParams = true;
-
-export function generateStaticParams() {
-  return [{ username: "alexey" }];
-}
 
 export default function UserSegmentLayout({
   children,

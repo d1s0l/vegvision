@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Urbanist, Source_Serif_4 } from "next/font/google";
+import { Inter, Source_Serif_4, Urbanist } from "next/font/google";
+import { publicPageMetadata } from "@/shared/lib/seo";
 import "./globals.css";
 
 const inter = Inter({
@@ -14,16 +15,10 @@ const urbanist = Urbanist({
 
 const sourceSerif = Source_Serif_4({
   variable: "--font-sourceSerif",
-  subsets: ["latin"]
-})
+  subsets: ["latin"],
+});
 
-export const metadata: Metadata = {
-  title: {
-    template: '%s - VegVision',
-    default: 'VegVision',
-  },
-  description: "Система мониторинга здоровья",
-};
+export const metadata: Metadata = publicPageMetadata;
 
 export default function RootLayout({
   children,

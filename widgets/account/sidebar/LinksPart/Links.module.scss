@@ -11,3 +11,35 @@
         padding-inline: 14px;
     }
 }
+
+.logoutButton {
+    width: 100%;
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-left: 24px;
+    border: 0;
+    border-radius: 15px;
+    background: transparent;
+    color: var(--element);
+    font-size: 20px;
+    font-family: var(--font-inter);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.2s ease;
+
+    span {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    &:hover {
+        transform: translateX(4px);
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.7;
+        transform: none;
+    }
+}

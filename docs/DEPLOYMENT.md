@@ -48,9 +48,13 @@ Recommended target: Yandex Serverless Containers.
 ```env
 NEXT_PUBLIC_APP_URL=https://your-domain.ru
 BACKEND_URL=https://api.your-domain.ru
+TELEGRAM_BOT_TOKEN=your-telegram-bot-token
+TELEGRAM_CHAT_ID=your-telegram-chat-id
 ```
 
 `BACKEND_URL` is not required while mocked API routes are used.
+
+`TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` are required for the WorkWithUs form notifications.
 
 ## API Gateway
 

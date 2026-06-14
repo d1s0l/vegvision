@@ -1,7 +1,8 @@
-'use client'
+"use client"
 
-import { BarChart3, CircleHelp, Home, Settings } from "lucide-react";
-import { useParams, usePathname } from "next/navigation";
+import { useState } from "react";
+import { BarChart3, Home, LogOut, Settings } from "lucide-react";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { SectionSidebar } from "../Section/Section";
 import styles from "./Links.module.scss"
 
@@ -10,8 +11,10 @@ interface LinksPartProps {
 }
 
 export function LinksPart({ onNavigate }: LinksPartProps) {
+    const router = useRouter();
     const pathname = usePathname();
     const params = useParams<{ username?: string }>();
+    const [isLoggingOut, setIsLoggingOut] = useState(false);
     const username = typeof params.username === "string" ? params.username : "";
 
     const homeHref = username ? `/u/${username}` : "/";
@@ -37,13 +40,25 @@ export function LinksPart({ onNavigate }: LinksPartProps) {
             href: settingsHref,
             active: pathname === settingsHref,
         },
-        {
-            icon: <CircleHelp size={26} />,
-            label: "Помощь",
-            href: homeHref,
-            active: false,
-        },
     ];
+
+    const handleLogout = async () => {
+        if (isLoggingOut) {
+            return;
+        }
+
+        setIsLoggingOut(true);
+
+        try {
+            await fetch("/api/auth/logout", {
+                method: "POST",
+            });
+        } finally {
+            onNavigate?.();
+            router.replace("/login");
+            router.refresh();
+        }
+    };
 
     return(
             <div className={styles.DesktopPart}>
@@ -67,6 +82,15 @@ export function LinksPart({ onNavigate }: LinksPartProps) {
                         onClick={onNavigate}
                     />
                 ))}
+                <button
+                    type="button"
+                    className={styles.logoutButton}
+                    onClick={handleLogout}
+                    disabled={isLoggingOut}
+                >
+                    <LogOut size={26} />
+                    <span>{isLoggingOut ? "Выход..." : "Выйти"}</span>
+                </button>
             </div>
     )
 }

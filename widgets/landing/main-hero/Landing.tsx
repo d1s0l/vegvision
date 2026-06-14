@@ -42,9 +42,9 @@ export default function Landing() {
                     <ScrollReveal direction="up">
                         <LandingAbout />
                     </ScrollReveal>
-                    <ScrollReveal direction="up" delay={120}>
+                    {/* <ScrollReveal direction="up" delay={120}>
                         <LandingHowWork />
-                    </ScrollReveal>
+                    </ScrollReveal> */}
                     <ScrollReveal direction="up" delay={180}>
                         <WorkWithUs />
                     </ScrollReveal>

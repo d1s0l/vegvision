@@ -1,6 +1,6 @@
 import { Analiz } from "@/widgets/account/analysis";
 
-export const revalidate = 60;
+export const revalidate = 0;
 
 interface UserAnalysisPageProps {
   params: Promise<{

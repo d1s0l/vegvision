@@ -4,6 +4,10 @@ import styles from "./page.module.scss";
 
 export const metadata: Metadata = {
   title: "Вход администратора",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function AdminLoginPage() {

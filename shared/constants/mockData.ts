@@ -125,7 +125,7 @@ export const recentAnalyses: RecentAnalysisItem[] = [
     analysedAt: "15:24",
     status: "healthy",
     diagnosis: "Листовая пластина без патологий",
-    image: "/tomato-leaf.png",
+    image: "/tomato-leaf.jpg",
   },
   {
     id: "analysis-2",
@@ -134,7 +134,7 @@ export const recentAnalyses: RecentAnalysisItem[] = [
     analysedAt: "15:12",
     status: "attention",
     diagnosis: "Риск грибкового поражения 23%",
-    image: "/tomato-leaf.png",
+    image: "/tomato-leaf.jpg",
   },
   {
     id: "analysis-3",
@@ -143,7 +143,7 @@ export const recentAnalyses: RecentAnalysisItem[] = [
     analysedAt: "14:57",
     status: "critical",
     diagnosis: "Найдены признаки бактериальной пятнистости",
-    image: "/tomato-leaf.png",
+    image: "/tomato-leaf.jpg",
   },
   {
     id: "analysis-4",
@@ -152,7 +152,7 @@ export const recentAnalyses: RecentAnalysisItem[] = [
     analysedAt: "14:41",
     status: "healthy",
     diagnosis: "Стабильный рост и однородный цвет",
-    image: "/tomato-leaf.png",
+    image: "/tomato-leaf.jpg",
   },
 ];
 

@@ -7,7 +7,11 @@ import { LoginForm } from "@/features/auth/login-form";
 import { UserAuthProvider } from "@/features/user-auth";
 
 export const metadata: Metadata = {
-  title: "Авторизация",
+  title: "Вход",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function Login() {

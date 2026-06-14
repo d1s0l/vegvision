@@ -6,6 +6,17 @@ import styles from "./Contacts.module.scss"
 
 export const metadata: Metadata = {
     title: "Контакты",
+    description:
+        "Свяжитесь с командой VegVision, чтобы обсудить внедрение системы мониторинга состояния растений.",
+    alternates: {
+        canonical: "/contacts",
+    },
+    openGraph: {
+        title: "Контакты | VegVision",
+        description:
+            "Оставьте заявку или напишите команде VegVision, чтобы обсудить сотрудничество и внедрение.",
+        url: "/contacts",
+    },
 }
 
 export default function Contacts() {

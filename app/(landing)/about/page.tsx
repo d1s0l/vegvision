@@ -4,7 +4,18 @@ import { LandingHeader } from "@/widgets/landing/header"
 import styles from "./About.module.scss"
 
 export const metadata: Metadata = {
-    title: "О нас",
+    title: "О проекте",
+    description:
+        "Узнайте, как VegVision помогает теплицам и агробизнесу раньше замечать риски для растений с помощью компьютерного зрения.",
+    alternates: {
+        canonical: "/about",
+    },
+    openGraph: {
+        title: "О проекте | VegVision",
+        description:
+            "VegVision объединяет компьютерное зрение, аналитику и практические задачи агробизнеса для контроля состояния растений.",
+        url: "/about",
+    },
 }
 
 export default function About() {
@@ -44,7 +55,7 @@ export default function About() {
                     </ScrollReveal>
 
                     <ScrollReveal className={styles.imageCard} direction="up" delay={140}>
-                        <img src="./tomato-leaf.png" alt="Лист томата" />
+                        <img src="/tomato-leaf.jpg" alt="Лист томата" />
                     </ScrollReveal>
 
                     <ScrollReveal as="article" className={styles.card} direction="up" delay={200}>

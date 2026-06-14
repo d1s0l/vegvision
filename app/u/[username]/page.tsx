@@ -1,6 +1,6 @@
 import { DashboardPageContent } from "@/widgets/dashboard/dashboard-page/DashboardPageContent";
 
-export const revalidate = 60;
+export const revalidate = 0;
 
 interface UserPageProps {
     params: Promise<{
