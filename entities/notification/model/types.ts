@@ -12,6 +12,10 @@ export interface NotificationPayload {
   sector?: string;
   disease?: string;
   severity?: NotificationSeverity;
+  image_url?: string;
+  raw_image_url?: string;
+  visualization_path?: string;
+  models?: Record<string, unknown>;
   [key: string]: unknown;
 }
 

@@ -3,7 +3,9 @@
 import { useEffect } from "react";
 import { AlertTriangle, X } from "lucide-react";
 import {
+  getAnalysisResult,
   getNotificationMessage,
+  translateDisease,
   useNotifications,
   type NotificationToastItem,
 } from "@/entities/notification";
@@ -25,6 +27,9 @@ interface ToastItemProps {
 }
 
 function ToastItem({ toast, onClose }: ToastItemProps) {
+  const analysis = getAnalysisResult(toast.payload);
+  const disease = translateDisease(analysis.disease || toast.disease);
+
   useEffect(() => {
     const timeoutId = window.setTimeout(
       () => onClose(toast.toastId),
@@ -42,7 +47,7 @@ function ToastItem({ toast, onClose }: ToastItemProps) {
 
       <div className={styles.content}>
         <div className={styles.titleRow}>
-          <strong>{toast.disease}</strong>
+          <strong>{disease}</strong>
           <span>{severityLabel[toast.severity]}</span>
         </div>
         <p>{getNotificationMessage(toast)}</p>

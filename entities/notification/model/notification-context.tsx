@@ -10,6 +10,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { isRequestCanceled } from "@/shared/lib/api";
 import { getNotifications } from "../api/notifications-api";
 import type {
   Notification,
@@ -172,7 +173,10 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
         setNotifications(nextWithLocalReadState);
       })
       .catch((error) => {
-        if (error instanceof DOMException && error.name === "AbortError") {
+        if (
+          isRequestCanceled(error) ||
+          (error instanceof DOMException && error.name === "AbortError")
+        ) {
           return;
         }
 

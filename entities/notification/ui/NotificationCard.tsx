@@ -3,6 +3,10 @@ import {
   formatNotificationDate,
   formatRelativeDate,
 } from "@/shared/lib/date";
+import {
+  getAnalysisResult,
+  translateDisease,
+} from "../model/analysis-result";
 import type { Notification } from "../model/types";
 import styles from "./NotificationCard.module.scss";
 
@@ -18,37 +22,31 @@ const severityLabel: Record<Notification["severity"], string> = {
 };
 
 export function getNotificationMessage(notification: Notification) {
+  const analysis = getAnalysisResult(notification.payload);
+
+  if (analysis.message) {
+    return analysis.message;
+  }
+
   if (notification.message) {
     return notification.message;
   }
 
-  return `Обнаружено заболевание: ${notification.disease.toLowerCase()} в секторе ${notification.sector.replace("Сектор ", "")}`;
+  return `Обнаружено заболевание: ${translateDisease(notification.disease).toLowerCase()} в секторе ${notification.sector.replace("Сектор ", "")}`;
 }
 
-function getImageUrl(notification: Notification) {
-  const value = notification.payload.image_url;
-
-  return typeof value === "string" ? value : "";
-}
-
-function formatImageUrl(url: string) {
-  try {
-    const parsedUrl = new URL(url);
-    const fileName = parsedUrl.pathname.split("/").filter(Boolean).at(-1) ?? "";
-    const shortFileName =
-      fileName.length > 28 ? `${fileName.slice(0, 18)}...${fileName.slice(-7)}` : fileName;
-
-    return `${parsedUrl.hostname}/.../${shortFileName}`;
-  } catch {
-    return url.length > 48 ? `${url.slice(0, 32)}...${url.slice(-12)}` : url;
-  }
+function formatConfidence(value: number) {
+  return `${(value * 100).toFixed(1)}%`;
 }
 
 export function NotificationCard({
   notification,
   onMarkAsRead,
 }: NotificationCardProps) {
-  const imageUrl = getImageUrl(notification);
+  const analysis = getAnalysisResult(notification.payload);
+  const disease = translateDisease(analysis.disease || notification.disease);
+  const confidence = analysis.confidencePercent;
+  const message = getNotificationMessage(notification);
 
   return (
     <article
@@ -60,21 +58,75 @@ export function NotificationCard({
 
       <div className={styles.content}>
         <div className={styles.topLine}>
-          <strong>{notification.disease}</strong>
+          <strong>Результат анализа</strong>
           <span>{severityLabel[notification.severity]}</span>
         </div>
-        <p>{getNotificationMessage(notification)}</p>
-        {imageUrl ? (
-          <a
-            className={styles.imageLink}
-            href={imageUrl}
-            target="_blank"
-            rel="noreferrer"
-            title={imageUrl}
-          >
-            {formatImageUrl(imageUrl)}
-          </a>
+
+        <div className={styles.resultGrid}>
+          {analysis.imageUrl ? (
+            <figure
+              className={styles.imageBlock}
+              role="link"
+              tabIndex={0}
+              onClick={() => window.open(analysis.imageUrl, "_blank", "noreferrer")}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  window.open(analysis.imageUrl, "_blank", "noreferrer");
+                }
+              }}
+            >
+              <img src={analysis.imageUrl} alt="Исходное изображение растения" />
+              <figcaption>Изображение</figcaption>
+            </figure>
+          ) : null}
+
+          {false && analysis.visualizationUrl ? (
+            <figure className={styles.imageBlock}>
+              <img
+                src={analysis.visualizationUrl}
+                alt="Визуализация результата анализа"
+              />
+              <figcaption>Визуализация</figcaption>
+            </figure>
+          ) : null}
+        </div>
+
+        <dl className={styles.details}>
+          <div>
+            <dt>Диагноз</dt>
+            <dd>{disease}</dd>
+          </div>
+          {confidence !== null ? (
+            <div>
+              <dt>Уверенность</dt>
+              <dd>{confidence}%</dd>
+            </div>
+          ) : null}
+        </dl>
+
+        <p>{message}</p>
+
+        {analysis.needsAgronomist ? (
+          <div className={styles.agronomistWarning}>
+            Требуется проверка агронома
+          </div>
         ) : null}
+
+        {analysis.top3.length > 0 ? (
+          <div className={styles.topPredictions}>
+            <strong>Возможные заболевания</strong>
+            <ul>
+              {analysis.top3.map((item) => (
+                <li key={`${item.class}-${item.confidence}`}>
+                  <span>{translateDisease(item.class)}</span>
+                  <b>{formatConfidence(item.confidence)}</b>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+
         <div className={styles.meta}>
           <span>{notification.sector}</span>
           <time dateTime={notification.createdAt}>

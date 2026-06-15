@@ -54,6 +54,10 @@ export function getApiErrorMessage(error: unknown, fallback = "Request failed") 
   return error instanceof Error ? error.message : fallback;
 }
 
+export function isRequestCanceled(error: unknown) {
+  return axios.isCancel(error);
+}
+
 export function isUnauthorizedError(error: unknown) {
   return axios.isAxiosError(error) && error.response?.status === 401;
 }

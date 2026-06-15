@@ -1,10 +1,11 @@
-import { api, getApiErrorMessage } from "@/shared/lib/api";
+import { api, getApiErrorMessage, isRequestCanceled } from "@/shared/lib/api";
 import type {
   BackendNotificationApiItem,
   Notification,
   NotificationPayload,
   NotificationSeverity,
 } from "../model/types";
+import { getAnalysisResult } from "../model/analysis-result";
 
 interface NotificationsResponse {
   notifications: BackendNotificationApiItem[];
@@ -31,40 +32,6 @@ function getStringPayloadValue(payload: NotificationPayload, key: string) {
   return typeof value === "string" ? value : "";
 }
 
-function getModelResponse(payload: NotificationPayload) {
-  const models = payload.models;
-
-  if (!models || typeof models !== "object" || Array.isArray(models)) {
-    return null;
-  }
-
-  const modelEntries = Object.values(models);
-  const successfulModel = modelEntries.find(
-    (model) =>
-      model &&
-      typeof model === "object" &&
-      !Array.isArray(model) &&
-      "resp" in model,
-  );
-
-  if (!successfulModel || typeof successfulModel !== "object") {
-    return null;
-  }
-
-  const response = (successfulModel as { resp?: unknown }).resp;
-
-  return response && typeof response === "object" && !Array.isArray(response)
-    ? (response as Record<string, unknown>)
-    : null;
-}
-
-function getModelStringValue(payload: NotificationPayload, key: string) {
-  const response = getModelResponse(payload);
-  const value = response?.[key];
-
-  return typeof value === "string" ? value : "";
-}
-
 function resolveSeverity(notification: BackendNotificationApiItem) {
   if (notification.payload.severity) {
     return notification.payload.severity;
@@ -84,15 +51,16 @@ function unwrapNotifications(data: BackendNotificationsResponse) {
 function normalizeNotification(
   notification: BackendNotificationApiItem,
 ): Notification {
+  const analysis = getAnalysisResult(notification.payload);
   const sector =
     getStringPayloadValue(notification.payload, "sector") || "Сектор не указан";
   const disease =
     getStringPayloadValue(notification.payload, "disease") ||
-    getModelStringValue(notification.payload, "disease") ||
+    analysis.disease ||
     DEFAULT_NOTIFICATION_TITLE;
   const messageCandidate =
     getStringPayloadValue(notification.payload, "message") ||
-    getModelStringValue(notification.payload, "message") ||
+    analysis.message ||
     notification.message ||
     notification.body ||
     notification.title;
@@ -128,6 +96,10 @@ export async function getNotifications(signal?: AbortSignal) {
 
     return unwrapNotifications(response.data).map(normalizeNotification);
   } catch (error) {
+    if (isRequestCanceled(error)) {
+      throw error;
+    }
+
     throw new Error(
       getApiErrorMessage(error, "Не удалось загрузить уведомления"),
     );
