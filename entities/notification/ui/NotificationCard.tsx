@@ -12,6 +12,7 @@ import styles from "./NotificationCard.module.scss";
 
 interface NotificationCardProps {
   notification: Notification;
+  compact?: boolean;
   onMarkAsRead?: (id: string) => void;
 }
 
@@ -41,6 +42,7 @@ function formatConfidence(value: number) {
 
 export function NotificationCard({
   notification,
+  compact = false,
   onMarkAsRead,
 }: NotificationCardProps) {
   const analysis = getAnalysisResult(notification.payload);
@@ -50,7 +52,7 @@ export function NotificationCard({
 
   return (
     <article
-      className={`${styles.card} ${!notification.isRead ? styles.unread : ""}`}
+      className={`${styles.card} ${compact ? styles.compact : ""} ${!notification.isRead ? styles.unread : ""}`}
     >
       <div className={styles.icon} aria-hidden="true">
         <AlertTriangle size={18} />

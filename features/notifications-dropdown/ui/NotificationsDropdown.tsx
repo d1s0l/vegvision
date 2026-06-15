@@ -83,6 +83,7 @@ export function NotificationsDropdown() {
               notifications.map((notification) => (
                 <NotificationCard
                   key={notification.id}
+                  compact
                   notification={notification}
                   onMarkAsRead={markAsRead}
                 />
