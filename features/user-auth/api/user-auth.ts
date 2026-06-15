@@ -1,56 +1,90 @@
 import type { User } from "@/entities/user";
+import {
+  api,
+  clearAccessToken,
+  getAccessToken,
+  getApiErrorMessage,
+  setAccessToken,
+} from "@/shared/lib/api";
 
 interface AuthResponse {
   accessToken: string;
-  refreshToken?: string;
   user: User;
 }
 
-async function parseResponse<T>(response: Response) {
-  const payload = (await response.json()) as T & { message?: string };
+interface BackendLoginResponse {
+  access_token: string;
+  token_type: string;
+}
 
-  if (!response.ok) {
-    throw new Error(payload.message ?? "Request failed");
-  }
+interface BackendUser {
+  id?: string;
+  email?: string;
+  role?: string;
+}
 
-  return payload;
+function mapBackendUser(user: BackendUser): User {
+  const email = user.email ?? "";
+  const fallbackName = email ? email.split("@")[0] : "user";
+
+  return {
+    email,
+    fullName: fallbackName,
+    name: fallbackName,
+    role: user.role ?? "user",
+    username: fallbackName,
+  };
 }
 
 export async function loginUser(email: string, password: string) {
-  const response = await fetch("/api/auth/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ email, password }),
-  });
+  try {
+    const loginResponse = await api.post<AuthResponse & BackendLoginResponse>("/api/auth/login", {
+      email,
+      password,
+    });
+    const accessToken = loginResponse.data.accessToken ?? loginResponse.data.access_token;
 
-  return parseResponse<AuthResponse>(response);
+    if (!accessToken) {
+      throw new Error("Backend login response does not contain access_token");
+    }
+
+    setAccessToken(accessToken);
+
+    if (loginResponse.data.user) {
+      return {
+        accessToken,
+        user: loginResponse.data.user,
+      } satisfies AuthResponse;
+    }
+
+    const userResponse = await api.get<BackendUser>("/api/user");
+
+    return {
+      accessToken,
+      user: mapBackendUser(userResponse.data),
+    } satisfies AuthResponse;
+  } catch (error) {
+    clearAccessToken();
+    throw new Error(getApiErrorMessage(error, "Login failed"));
+  }
 }
 
 export async function restoreUserSession() {
-  const response = await fetch("/api/auth/session", {
-    method: "GET",
-    cache: "no-store",
-  });
+  const accessToken = getAccessToken();
 
-  return parseResponse<AuthResponse>(response);
-}
+  try {
+    const userResponse = await api.get<BackendUser>("/api/user");
 
-export async function refreshUserSession() {
-  const response = await fetch("/api/auth/refresh", {
-    method: "POST",
-  });
-
-  return parseResponse<AuthResponse>(response);
+    return {
+      accessToken: accessToken ?? "",
+      user: mapBackendUser(userResponse.data),
+    } satisfies AuthResponse;
+  } catch (error) {
+    clearAccessToken();
+    throw new Error(getApiErrorMessage(error, "Session restore failed"));
+  }
 }
 
 export async function logoutUser() {
-  const response = await fetch("/api/auth/logout", {
-    method: "POST",
-  });
-
-  if (!response.ok) {
-    throw new Error("Logout failed");
-  }
+  clearAccessToken();
 }

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 import styles from "@/shared/ui/auth-shell/AuthShell.module.scss";
 import { ButtonBack } from "@/shared/ui/button-back";
-import { RegistrationForm } from "@/features/auth/registration-form";
+// import { RegistrationForm } from "@/features/auth/registration-form";
 
 export const metadata: Metadata = {
   title: "Регистрация",
@@ -29,7 +29,7 @@ export default function Registraion() {
             />
             <h1>VegVision</h1>
           </Link>
-          <RegistrationForm />
+          {/* <RegistrationForm /> */}
           <div className={styles.regist}>
             <span>Уже есть аккаунт?</span>
             <Link href="/login">Войти</Link>

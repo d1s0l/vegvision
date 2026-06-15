@@ -1,3 +1,4 @@
+import { api, getApiErrorMessage } from "@/shared/lib/api";
 import type {
   BackendNotificationApiItem,
   Notification,
@@ -13,6 +14,9 @@ type BackendNotificationsResponse =
   | BackendNotificationApiItem[]
   | NotificationsResponse;
 
+const DEFAULT_NOTIFICATION_TITLE = "Обнаружено заболевание";
+const DEFAULT_NOTIFICATION_MESSAGE = "Обнаружено заболевание растения";
+
 const severityByStatus: Record<string, NotificationSeverity> = {
   pending: "warning",
   sent: "info",
@@ -27,12 +31,54 @@ function getStringPayloadValue(payload: NotificationPayload, key: string) {
   return typeof value === "string" ? value : "";
 }
 
+function getModelResponse(payload: NotificationPayload) {
+  const models = payload.models;
+
+  if (!models || typeof models !== "object" || Array.isArray(models)) {
+    return null;
+  }
+
+  const modelEntries = Object.values(models);
+  const successfulModel = modelEntries.find(
+    (model) =>
+      model &&
+      typeof model === "object" &&
+      !Array.isArray(model) &&
+      "resp" in model,
+  );
+
+  if (!successfulModel || typeof successfulModel !== "object") {
+    return null;
+  }
+
+  const response = (successfulModel as { resp?: unknown }).resp;
+
+  return response && typeof response === "object" && !Array.isArray(response)
+    ? (response as Record<string, unknown>)
+    : null;
+}
+
+function getModelStringValue(payload: NotificationPayload, key: string) {
+  const response = getModelResponse(payload);
+  const value = response?.[key];
+
+  return typeof value === "string" ? value : "";
+}
+
 function resolveSeverity(notification: BackendNotificationApiItem) {
   if (notification.payload.severity) {
     return notification.payload.severity;
   }
 
   return severityByStatus[notification.status] ?? "warning";
+}
+
+function isTechnicalText(value: string) {
+  return value === "full" || value === "full_analysis";
+}
+
+function unwrapNotifications(data: BackendNotificationsResponse) {
+  return Array.isArray(data) ? data : data.notifications;
 }
 
 function normalizeNotification(
@@ -42,15 +88,24 @@ function normalizeNotification(
     getStringPayloadValue(notification.payload, "sector") || "Сектор не указан";
   const disease =
     getStringPayloadValue(notification.payload, "disease") ||
-    notification.title ||
-    notification.notification_type ||
-    "Заболевание растения";
+    getModelStringValue(notification.payload, "disease") ||
+    DEFAULT_NOTIFICATION_TITLE;
+  const messageCandidate =
+    getStringPayloadValue(notification.payload, "message") ||
+    getModelStringValue(notification.payload, "message") ||
+    notification.message ||
+    notification.body ||
+    notification.title;
+  const message =
+    messageCandidate && !isTechnicalText(messageCandidate)
+      ? messageCandidate
+      : DEFAULT_NOTIFICATION_MESSAGE;
 
   return {
     id: notification.id,
-    title: notification.title,
+    title: DEFAULT_NOTIFICATION_TITLE,
     body: notification.body,
-    message: notification.message || notification.body || notification.title,
+    message,
     sector,
     disease,
     severity: resolveSeverity(notification),
@@ -65,24 +120,16 @@ function normalizeNotification(
   };
 }
 
-function unwrapNotifications(data: BackendNotificationsResponse) {
-  return Array.isArray(data) ? data : data.notifications;
-}
-
 export async function getNotifications(signal?: AbortSignal) {
-  const response = await fetch("/api/notifications", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-    signal,
-  });
+  try {
+    const response = await api.get<BackendNotificationsResponse>("/api/notifications", {
+      signal,
+    });
 
-  if (!response.ok) {
-    throw new Error("Не удалось загрузить уведомления");
+    return unwrapNotifications(response.data).map(normalizeNotification);
+  } catch (error) {
+    throw new Error(
+      getApiErrorMessage(error, "Не удалось загрузить уведомления"),
+    );
   }
-
-  const data = (await response.json()) as BackendNotificationsResponse;
-
-  return unwrapNotifications(data).map(normalizeNotification);
 }

@@ -102,11 +102,16 @@
             margin: 10px 0;
 
             a {
+                display: block;
+                padding: 10px 12px;
+                border-radius: 6px;
                 font-size: 20px;
                 font-family: var(--font-inter);
                 color: var(--element);
                 text-decoration: none;
-                transition: opacity 0.3s;
+                transition:
+                    background-color 0.3s,
+                    opacity 0.3s;
 
                 &:hover {
                     opacity: 0.8;
@@ -116,11 +121,19 @@
     }
 }
 
+.activeLink {
+    background: color-mix(in srgb, var(--dark-green) 78%, black 22%);
+}
+
 .ul[data-theme="dark"] {
     background: var(--element);
 
     a {
         color: var(--dark-green) !important;
+    }
+
+    .activeLink {
+        background: color-mix(in srgb, var(--element) 72%, black 28%);
     }
 }
 

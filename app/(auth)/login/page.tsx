@@ -33,10 +33,10 @@ export default function Login() {
           <UserAuthProvider>
             <LoginForm />
           </UserAuthProvider>
-          <div className={styles.regist}>
+          {/* <div className={styles.regist}>
             <span>Нет аккаунта?</span>
             <Link href="/registration">Регистрация</Link>
-          </div>
+          </div> */}
         </div>
       </div>
 

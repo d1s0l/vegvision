@@ -1,40 +1,35 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { adminPanelData } from "@/entities/admin";
 import {
   type BackendUser,
   backendJson,
   getBearerHeaders,
   isBackendConfigured,
-  mapBackendAdmin,
+  mapBackendAdminUserRow,
 } from "@/shared/lib/backend-api";
 import { ADMIN_REFRESH_COOKIE } from "@/shared/lib/admin-auth/constants";
 
 export async function GET(request: NextRequest) {
+  if (!isBackendConfigured()) {
+    return NextResponse.json(adminPanelData.internalUsers);
+  }
+
   const accessToken = request.cookies.get(ADMIN_REFRESH_COOKIE)?.value;
 
   if (!accessToken) {
-    return NextResponse.json({ message: "Session not found" }, { status: 401 });
-  }
-
-  if (!isBackendConfigured()) {
-    return NextResponse.json(
-      { message: "Backend API is not configured" },
-      { status: 503 },
-    );
+    return NextResponse.json({ message: "Admin session not found" }, { status: 401 });
   }
 
   try {
-    const backendUser = await backendJson<BackendUser>("/auth/me", {
+    const backendUsers = await backendJson<BackendUser[]>("/admin/users", {
       headers: getBearerHeaders(accessToken),
     });
 
-    return NextResponse.json({
-      accessToken,
-      admin: mapBackendAdmin(backendUser),
-    });
+    return NextResponse.json(backendUsers.map(mapBackendAdminUserRow));
   } catch (error) {
     return NextResponse.json(
-      { message: error instanceof Error ? error.message : "Admin session failed" },
-      { status: 401 },
+      { message: error instanceof Error ? error.message : "Admin users request failed" },
+      { status: 500 },
     );
   }
 }

@@ -1,14 +1,10 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { mockUserCredentials } from "@/entities/user";
 import { useUserAuth } from "@/features/user-auth";
-import { USER_DASHBOARD_PATH } from "@/shared/lib/user-auth/constants";
 import { PasswordInputLogin } from "@/shared/ui/password-input";
 import styles from "@/shared/ui/auth-shell/AuthShell.module.scss";
 
 export function LoginForm() {
-  const router = useRouter();
   const { login, isLoading, error } = useUserAuth();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -19,9 +15,8 @@ export function LoginForm() {
     const password = String(formData.get("password") ?? "");
 
     try {
-      await login(email, password);
-      router.push(USER_DASHBOARD_PATH);
-      router.refresh();
+      const user = await login(email, password);
+      window.location.replace(`/u/${encodeURIComponent(user.username)}`);
     } catch {
       // The auth context stores and exposes the error message.
     }
@@ -36,8 +31,7 @@ export function LoginForm() {
           <input
             type="text"
             name="email"
-            placeholder="admin"
-            defaultValue={mockUserCredentials.email}
+            placeholder="example@mail.com"
             required
             className={styles.input}
           />

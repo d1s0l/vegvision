@@ -54,6 +54,33 @@ TELEGRAM_CHAT_ID=your-telegram-chat-id
 
 `BACKEND_URL` is not required while mocked API routes are used.
 
+When the backend is deployed separately, put its base URL into `BACKEND_URL`.
+Do not add endpoint paths here. Use only the origin/base path:
+
+```env
+BACKEND_URL=https://api.vegvision.ru
+```
+
+The Next.js API routes proxy these backend endpoints:
+
+```text
+POST BACKEND_URL/auth/login
+GET  BACKEND_URL/auth/me
+POST BACKEND_URL/users
+GET  BACKEND_URL/users/me
+GET  BACKEND_URL/admin/users
+```
+
+The browser should keep calling local frontend routes:
+
+```text
+POST /api/auth/login
+GET  /api/auth/session
+POST /api/users
+GET  /api/user
+GET  /api/admin/users
+```
+
 `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` are required for the WorkWithUs form notifications.
 
 ## API Gateway

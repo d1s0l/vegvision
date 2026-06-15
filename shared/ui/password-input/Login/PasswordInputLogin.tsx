@@ -14,8 +14,7 @@ export function PasswordInputLogin() {
           type={showPassword ? "text" : "password"}
           name="password"
           id="password"
-          defaultValue="admin"
-          placeholder="admin"
+          placeholder="**********"
           required
           className={styles.input}
         />

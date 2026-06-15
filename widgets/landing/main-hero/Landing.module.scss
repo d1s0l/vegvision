@@ -60,7 +60,6 @@
     max-width: 90%;
     opacity: 0;
     transform: translateX(72px);
-    animation: heroTextSlideIn 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
 
     @media (max-width: 992px) {
         align-items: center;
@@ -209,6 +208,10 @@
     }
 }
 
+.textblockVisible {
+    animation: heroTextSlideIn 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+
 @keyframes heroTextSlideIn {
     from {
         opacity: 0;
@@ -222,7 +225,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .textblock {
+    .textblockVisible {
         animation: none;
         opacity: 1;
         transform: none;

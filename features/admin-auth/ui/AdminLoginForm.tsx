@@ -1,28 +1,24 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { ShieldCheck, Sparkles } from "lucide-react";
 import { useState } from "react";
-import { mockAdminCredentials } from "@/entities/admin";
 import { ADMIN_DASHBOARD_PATH } from "@/shared/lib/admin-auth/constants";
 import { useAdminAuth } from "../model/use-admin-auth";
 import styles from "./AdminLoginForm.module.scss";
 
 export function AdminLoginForm() {
-  const router = useRouter();
   const { login, isLoading, error } = useAdminAuth();
-  const [email, setEmail] = useState(mockAdminCredentials.email);
-  const [password, setPassword] = useState(mockAdminCredentials.password);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
       await login(email, password);
-      router.push(ADMIN_DASHBOARD_PATH);
-      router.refresh();
+      window.location.replace(ADMIN_DASHBOARD_PATH);
     } catch {
-      // ошибка уже обработана в контексте
+      // The auth context stores and exposes the error message.
     }
   };
 
@@ -34,14 +30,13 @@ export function AdminLoginForm() {
           Внутренний доступ
         </span>
         <h1>VegVision Admin</h1>
-        
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.formHead}>
           <div>
             <strong>Вход администратора</strong>
-            <span>Access token хранится только в памяти, refresh работает через cookie.</span>
+            <span>Введите учетные данные администратора.</span>
           </div>
           <Sparkles size={18} />
         </div>
@@ -52,7 +47,8 @@ export function AdminLoginForm() {
             type="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
-            placeholder="owner@vegvision.app"
+            placeholder="admin@vegvision.io"
+            required
           />
         </label>
 
@@ -63,6 +59,7 @@ export function AdminLoginForm() {
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             placeholder="Введите пароль"
+            required
           />
         </label>
 
@@ -71,12 +68,6 @@ export function AdminLoginForm() {
         </button>
 
         {error ? <p className={styles.error}>{error}</p> : null}
-
-        <div className={styles.hint}>
-          <span>Тестовые данные</span>
-          <strong>{mockAdminCredentials.email}</strong>
-          <strong>{mockAdminCredentials.password}</strong>
-        </div>
       </form>
     </section>
   );

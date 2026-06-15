@@ -1,6 +1,8 @@
-'use client'
+"use client"
 
-import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 import styles from "./BurgerButton.module.scss"
 
 type BurgerProps = {
@@ -9,25 +11,27 @@ type BurgerProps = {
 
 export function Burger({ variant = "light" }: BurgerProps) {
     const [isOpen, setIsOpen] = useState(false);
-    const [mounted, setMounted] = useState(false);
+    const pathname = usePathname();
 
-    useEffect(() => {
-        setMounted(true);
-    }, []);
+    const navItems = [
+        { name: "Войти", href: "/login" },
+        { name: "Главная", href: "/" },
+        { name: "О нас", href: "/about" },
+        { name: "Контакты", href: "/contacts" },
+    ];
 
     const toggleNav = () => {
-        setIsOpen(!isOpen)
+        setIsOpen((prev) => !prev)
     }
-    
 
     return(
-        <div 
-            className={styles.container} 
+        <div
+            className={styles.container}
             data-theme={variant}
         >
             <nav onClick={toggleNav} className={styles.button}>
-                <button 
-                    className={`${styles.burger} ${isOpen ? styles.open : ''}`}
+                <button
+                    className={`${styles.burger} ${isOpen ? styles.open : ""}`}
                     aria-label="Меню"
                     aria-expanded={isOpen}
                 >
@@ -40,10 +44,22 @@ export function Burger({ variant = "light" }: BurgerProps) {
             {isOpen && (
                 <div className={styles.ul} data-theme={variant}>
                     <ul>
-                        <li><a href="/login">Войти</a></li>
-                        <li><a href="/">Главная</a></li>
-                        <li><a href="/about">О нас</a></li>
-                        <li><a href="/contacts">Контакты</a></li>
+                        {navItems.map((item) => {
+                            const isActive = pathname === item.href;
+
+                            return (
+                                <li key={item.href}>
+                                    <Link
+                                        href={item.href}
+                                        className={isActive ? styles.activeLink : ""}
+                                        aria-current={isActive ? "page" : undefined}
+                                        onClick={() => setIsOpen(false)}
+                                    >
+                                        {item.name}
+                                    </Link>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
             )}

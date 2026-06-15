@@ -16,8 +16,9 @@ import type {
   NotificationToastItem,
 } from "./types";
 
-const POLLING_INTERVAL = 30000;
+const POLLING_INTERVAL = 10000;
 const MAX_VISIBLE_TOASTS = 3;
+const READ_NOTIFICATIONS_KEY = "read_notification_ids";
 
 interface NotificationContextValue {
   notifications: Notification[];
@@ -39,11 +40,12 @@ interface NotificationProviderProps {
 function mergeNotifications(
   current: Notification[],
   incoming: Notification[],
+  localReadIds: Set<string>,
 ) {
   const currentById = new Map(current.map((item) => [item.id, item]));
   const nextItems = incoming.map((item) => ({
     ...item,
-    isRead: currentById.get(item.id)?.isRead ?? item.isRead,
+    isRead: localReadIds.has(item.id) || currentById.get(item.id)?.isRead || item.isRead,
   }));
 
   return nextItems.sort(
@@ -52,11 +54,43 @@ function mergeNotifications(
   );
 }
 
+function readStoredNotificationIds() {
+  if (typeof window === "undefined") {
+    return new Set<string>();
+  }
+
+  try {
+    const value = window.localStorage.getItem(READ_NOTIFICATIONS_KEY);
+    const ids = value ? (JSON.parse(value) as unknown) : [];
+
+    return new Set(Array.isArray(ids) ? ids.filter((id) => typeof id === "string") : []);
+  } catch {
+    return new Set<string>();
+  }
+}
+
+function writeStoredNotificationIds(ids: Set<string>) {
+  window.localStorage.setItem(READ_NOTIFICATIONS_KEY, JSON.stringify([...ids]));
+}
+
+function getNotificationSignature(notification: Notification) {
+  return [
+    notification.id,
+    notification.status,
+    notification.message,
+    notification.createdAt,
+    notification.sentAt ?? "",
+    notification.readAt ?? "",
+  ].join("|");
+}
+
 export function NotificationProvider({ children }: NotificationProviderProps) {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [visibleToasts, setVisibleToasts] = useState<NotificationToastItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const knownIdsRef = useRef<Set<string>>(new Set());
+  const knownSignaturesRef = useRef<Map<string, string>>(new Map());
+  const localReadIdsRef = useRef<Set<string>>(new Set());
   const isInitializedRef = useRef(false);
   const toastQueueRef = useRef<NotificationToastItem[]>([]);
 
@@ -80,10 +114,18 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
     const incoming = await getNotifications();
 
     setNotifications((current) => {
-      const next = mergeNotifications(current, incoming);
-      const freshItems = next.filter((item) => !knownIdsRef.current.has(item.id));
+      const next = mergeNotifications(current, incoming, localReadIdsRef.current);
+      const freshItems = next.filter((item) => {
+        const signature = getNotificationSignature(item);
+        const previousSignature = knownSignaturesRef.current.get(item.id);
+
+        return !knownIdsRef.current.has(item.id) || previousSignature !== signature;
+      });
 
       knownIdsRef.current = new Set(next.map((item) => item.id));
+      knownSignaturesRef.current = new Map(
+        next.map((item) => [item.id, getNotificationSignature(item)]),
+      );
 
       if (isInitializedRef.current) {
         freshItems.forEach(enqueueToast);
@@ -112,10 +154,22 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
             new Date(right.createdAt).getTime() -
             new Date(left.createdAt).getTime(),
         );
+        const localReadIds = readStoredNotificationIds();
+        localReadIdsRef.current = localReadIds;
+        const nextWithLocalReadState = next.map((item) => ({
+          ...item,
+          isRead: localReadIds.has(item.id) || item.isRead,
+        }));
 
-        knownIdsRef.current = new Set(next.map((item) => item.id));
+        knownIdsRef.current = new Set(nextWithLocalReadState.map((item) => item.id));
+        knownSignaturesRef.current = new Map(
+          nextWithLocalReadState.map((item) => [
+            item.id,
+            getNotificationSignature(item),
+          ]),
+        );
         isInitializedRef.current = true;
-        setNotifications(next);
+        setNotifications(nextWithLocalReadState);
       })
       .catch((error) => {
         if (error instanceof DOMException && error.name === "AbortError") {
@@ -145,6 +199,9 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
   }, [refreshNotifications]);
 
   const markAsRead = useCallback((id: string) => {
+    localReadIdsRef.current.add(id);
+    writeStoredNotificationIds(localReadIdsRef.current);
+
     setNotifications((current) =>
       current.map((item) =>
         item.id === id
@@ -158,12 +215,15 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
   }, []);
 
   const markAllAsRead = useCallback(() => {
-    setNotifications((current) =>
-      current.map((item) => ({
+    setNotifications((current) => {
+      current.forEach((item) => localReadIdsRef.current.add(item.id));
+      writeStoredNotificationIds(localReadIdsRef.current);
+
+      return current.map((item) => ({
         ...item,
         isRead: true,
-      })),
-    );
+      }));
+    });
   }, []);
 
   const dismissToast = useCallback((toastId: string) => {

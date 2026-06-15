@@ -1,17 +1,40 @@
-import { NextResponse } from "next/server";
-import { adminPanelData } from "@/entities/admin";
+import { NextResponse, type NextRequest } from "next/server";
+import {
+  type BackendUser,
+  backendJson,
+  getBearerHeaders,
+  isBackendConfigured,
+  mapBackendAdmin,
+} from "@/shared/lib/backend-api";
 import { ADMIN_REFRESH_COOKIE } from "@/shared/lib/admin-auth/constants";
-import { createMockAccessToken } from "@/shared/lib/admin-auth/session";
 
-export async function POST(request: Request) {
-  const cookie = request.headers.get("cookie") ?? "";
+export async function POST(request: NextRequest) {
+  const accessToken = request.cookies.get(ADMIN_REFRESH_COOKIE)?.value;
 
-  if (!cookie.includes(ADMIN_REFRESH_COOKIE)) {
-    return NextResponse.json({ message: "Refresh-cookie не найдена" }, { status: 401 });
+  if (!accessToken) {
+    return NextResponse.json({ message: "Session cookie not found" }, { status: 401 });
   }
 
-  return NextResponse.json({
-    accessToken: createMockAccessToken(),
-    admin: adminPanelData.currentAdmin,
-  });
+  if (!isBackendConfigured()) {
+    return NextResponse.json(
+      { message: "Backend API is not configured" },
+      { status: 503 },
+    );
+  }
+
+  try {
+    const backendUser = await backendJson<BackendUser>("/auth/me", {
+      headers: getBearerHeaders(accessToken),
+    });
+
+    return NextResponse.json({
+      accessToken,
+      admin: mapBackendAdmin(backendUser),
+    });
+  } catch (error) {
+    return NextResponse.json(
+      { message: error instanceof Error ? error.message : "Admin refresh failed" },
+      { status: 401 },
+    );
+  }
 }
