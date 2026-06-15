@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { BarChart3, Home, LogOut, Settings } from "lucide-react";
+import { BarChart3, Bell, Home, LogOut, Settings } from "lucide-react";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { logoutUser } from "@/features/user-auth/api/user-auth";
 import { SectionSidebar } from "../Section/Section";
@@ -20,6 +20,7 @@ export function LinksPart({ onNavigate }: LinksPartProps) {
 
   const homeHref = username ? `/u/${username}` : "/";
   const analyticsHref = username ? `/u/${username}/analytics` : "/";
+  const notificationsHref = username ? `/u/${username}/notifications` : "/";
   const settingsHref = username ? `/u/${username}/settings` : "/";
 
   const navItems = [
@@ -34,6 +35,12 @@ export function LinksPart({ onNavigate }: LinksPartProps) {
       label: "Аналитика",
       href: analyticsHref,
       active: pathname === analyticsHref,
+    },
+    {
+      icon: <Bell size={26} />,
+      label: "Уведомления",
+      href: notificationsHref,
+      active: pathname === notificationsHref,
     },
     {
       icon: <Settings size={26} />,

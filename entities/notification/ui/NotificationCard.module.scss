@@ -85,6 +85,29 @@
   font-size: 0.78rem;
 }
 
+.imageLink {
+  width: fit-content;
+  max-width: 100%;
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  color: var(--check-green);
+  font-family: var(--font-inter);
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.35;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--dark-green);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
 .readButton {
   grid-column: 2;
   width: fit-content;

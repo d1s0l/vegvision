@@ -16,7 +16,7 @@ import type {
   NotificationToastItem,
 } from "./types";
 
-const POLLING_INTERVAL = 10000;
+const POLLING_INTERVAL = 1000 * 60 * 10;
 const MAX_VISIBLE_TOASTS = 3;
 const READ_NOTIFICATIONS_KEY = "read_notification_ids";
 

@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Bell } from "lucide-react";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { Bell, ExternalLink } from "lucide-react";
 import { NotificationCard, useNotifications } from "@/entities/notification";
 import { DropdownPanel } from "@/shared/ui/dropdown";
 import styles from "./NotificationsDropdown.module.scss";
@@ -9,6 +11,9 @@ import styles from "./NotificationsDropdown.module.scss";
 export function NotificationsDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement | null>(null);
+  const params = useParams<{ username?: string }>();
+  const username = typeof params.username === "string" ? params.username : "";
+  const notificationsHref = username ? `/u/${username}/notifications` : "/";
   const {
     notifications,
     unreadCount,
@@ -89,7 +94,14 @@ export function NotificationsDropdown() {
             )}
           </div>
 
-          <div className={styles.footer}>Все уведомления</div>
+          <Link
+            className={styles.footer}
+            href={notificationsHref}
+            onClick={() => setIsOpen(false)}
+          >
+            <span>Все уведомления</span>
+            <ExternalLink size={16} />
+          </Link>
         </div>
       </DropdownPanel>
     </div>

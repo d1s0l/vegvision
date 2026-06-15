@@ -126,12 +126,25 @@
 }
 
 .footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
   padding: 14px 18px 18px;
   border-top: 1px solid color-mix(in srgb, var(--light-gray) 18%, transparent);
   color: var(--check-green);
   font-family: var(--font-inter);
   font-size: 0.9rem;
   font-weight: 800;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+
+  &:hover {
+    background: color-mix(in srgb, var(--light-green) 45%, var(--element));
+    color: var(--dark-green);
+  }
 }
 
 @media (max-width: 640px) {
