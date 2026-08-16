@@ -26,33 +26,7 @@ export function Footer() {
           <Link href="/about">О нас</Link>
           <Link href="/contacts">Контакты</Link>
         </div>
-        <div className={styles.social}>
-          <a href="" className={styles.imagelink}>
-            <Image
-              src="./social/tg.svg"
-              alt="Telegram Icon"
-              width={38}
-              height={32}
-              className="mr-1"
-            />
-          </a>
-          <a href="" className={styles.imagelink}>
-            <Image
-              src="./social/instagram.svg"
-              alt="Instagram Icon"
-              width={34}
-              height={34}
-            />
-          </a>
-          <a href="" className={styles.imagelink}>
-            <Image
-              src="./social/vk.svg"
-              alt="VK Icon"
-              width={37}
-              height={25}
-            />
-          </a>
-        </div>
+
         <p className={styles.rights}>© 2026 VegVision. All Rights Reserved</p>
       </div>
     </footer>

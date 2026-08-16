@@ -56,29 +56,66 @@
     );
     margin: 40px auto 0;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
     gap: 20px;
 }
 
+/* ---------- Email card ---------- */
+
 .card {
-    padding: 26px 28px;
+    width: 100%;
+    padding: 40px 44px;
     border-radius: 28px;
-    background: rgba(255, 255, 255, 0.48);
-    box-shadow: 0 10px 30px rgba(19, 42, 19, 0.06);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.36));
+    border: 1px solid rgba(49, 87, 44, 0.1);
+    box-shadow: 0 14px 36px rgba(19, 42, 19, 0.07);
     font-family: var(--font-inter);
     color: var(--dark-green);
+}
 
-    h5 {
-        font: {
-            size: 28px;
-            weight: 700;
-        }
-        margin-bottom: 18px;
+.cardInner {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.cardIcon {
+    flex-shrink: 0;
+    width: 76px;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    background: rgba(49, 87, 44, 0.1);
+    color: var(--check-green);
+
+    svg {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+.cardBody {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.cardLabel {
+    display: block;
+    color: var(--check-green);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+
+    font: {
+        size: 13px;
+        weight: 700;
     }
 }
 
 .info {
-    color: var(--gray);
+    color: var(--dark-green);
     font-style: normal;
 
     a {
@@ -86,8 +123,9 @@
         display: inline-block;
         position: relative;
         line-height: 1.4;
-        font-weight: 400;
-        font-size: 24px;
+        font-weight: 700;
+        font-size: 30px;
+        word-break: break-word;
 
         &::after {
             content: '';
@@ -96,7 +134,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--gray);
+            background-color: var(--check-green);
             transition: width 0.3s ease-in-out;
         }
 
@@ -105,6 +143,75 @@
         }
     }
 }
+
+.note {
+    margin-top: 10px;
+    color: var(--gray);
+    font-family: var(--font-inter);
+
+    font: {
+        size: 16px;
+        weight: 400;
+    }
+}
+
+.actionWrap {
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+}
+
+.cardAction {
+    background: var(--check-green);
+    color: white;
+    width: 56px;
+    height: 56px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    text-decoration: none;
+    box-shadow: 0 8px 20px rgba(49, 87, 44, 0.18);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+    svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 26px rgba(49, 87, 44, 0.24);
+    }
+}
+
+.toast {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translate(-50%, 4px);
+    padding: 8px 14px;
+    border-radius: 10px;
+    background: var(--dark-green);
+    color: white;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+
+    font: {
+        family: var(--font-inter);
+        size: 14px;
+        weight: 600;
+    }
+}
+
+.toastVisible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+/* ---------- Hint ---------- */
 
 .hint {
     width: min(
@@ -130,6 +237,8 @@
     }
 }
 
+/* ---------- Responsive ---------- */
+
 @media (max-width: 1024px) {
     .page {
         padding-bottom: 72px;
@@ -147,12 +256,38 @@
         }
     }
 
-    .card h5 {
-        font-size: 24px;
+    .card {
+        padding: 34px 36px;
+    }
+
+    .cardIcon {
+        width: 64px;
+        height: 64px;
+        border-radius: 18px;
+
+        svg {
+            width: 28px;
+            height: 28px;
+        }
     }
 
     .info a {
-        font-size: 21px;
+        font-size: 26px;
+    }
+
+    .cardAction {
+        width: 50px;
+        height: 50px;
+
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    .toast {
+        font-size: 13px;
+        padding: 7px 12px;
     }
 }
 
@@ -175,22 +310,55 @@
 
     .contacts {
         margin-top: 28px;
-        grid-template-columns: 1fr;
         gap: 16px;
     }
 
     .card {
-        padding: 22px 20px;
+        padding: 26px 24px;
         border-radius: 22px;
     }
 
-    .card h5 {
-        font-size: 22px;
-        margin-bottom: 14px;
+    .cardInner {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .cardIcon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    .cardBody {
+        flex: 1 1 calc(100% - 68px);
     }
 
     .info a {
-        font-size: 18px;
+        font-size: 21px;
+    }
+
+    .note {
+        font-size: 14px;
+    }
+
+    .actionWrap {
+        flex: 1 1 100%;
+    }
+
+    .cardAction {
+        width: 100%;
+        height: 48px;
+        border-radius: 12px;
+    }
+
+    .toast {
+        bottom: auto;
+        top: -38px;
     }
 
     .hint {
@@ -221,8 +389,35 @@
         padding: 8px 14px;
     }
 
+    .card {
+        padding: 22px 18px;
+    }
+
+    .cardIcon {
+        width: 46px;
+        height: 46px;
+        border-radius: 12px;
+
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    .cardBody {
+        flex-basis: calc(100% - 62px);
+    }
+
     .info a {
-        font-size: 16px;
+        font-size: 17px;
+    }
+
+    .cardLabel {
+        font-size: 12px;
+    }
+
+    .note {
+        font-size: 13px;
     }
 
     .hint p {

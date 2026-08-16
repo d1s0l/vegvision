@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import { ScrollReveal } from "@/shared/ui/scroll-reveal"
 import { LandingHeader } from "@/widgets/landing/header"
 import { WorkWithUs } from "@/widgets/landing/work-with-us"
+import { EmailCopyButton } from "./EmailCopyButton"
 import styles from "./Contacts.module.scss"
 
 export const metadata: Metadata = {
@@ -35,23 +36,40 @@ export default function Contacts() {
 
             <section className={styles.contacts}>
                 <ScrollReveal className={styles.card} direction="up">
-                    <h5>Почта</h5>
-                    <address className={styles.info}>
-                        <a href="mailto:vegvision@yandex.ru">vegvision@yandex.ru</a>
-                    </address>
-                </ScrollReveal>
+                    <div className={styles.cardInner}>
+                        <div className={styles.cardIcon}>
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M3 6.5C3 5.67157 3.67157 5 4.5 5H19.5C20.3284 5 21 5.67157 21 6.5V17.5C21 18.3284 20.3284 19 19.5 19H4.5C3.67157 19 3 18.3284 3 17.5V6.5Z"
+                                    stroke="currentColor"
+                                    strokeWidth="1.5"
+                                />
+                                <path
+                                    d="M4 6.5L12 12.5L20 6.5"
+                                    stroke="currentColor"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                        </div>
 
-                <ScrollReveal className={styles.card} direction="up" delay={100}>
-                    <h5>Телефон</h5>
-                    <address className={styles.info}>
-                        <a href="tel:+78005553535">8 (800) 555-35-35</a>
-                    </address>
+                        <div className={styles.cardBody}>
+                            <span className={styles.cardLabel}>Почта</span>
+                            <address className={styles.info}>
+                                <a href="mailto:vegvision@yandex.ru">vegvision@yandex.ru</a>
+                            </address>
+                            
+                        </div>
+
+                        <EmailCopyButton email="vegvision@yandex.ru" />
+                    </div>
                 </ScrollReveal>
             </section>
 
             <ScrollReveal as="section" className={styles.hint} direction="up" delay={120}>
                 <p>
-                    Обычно отвечаем в рабочее время. Если оставите заявку ниже, мы свяжемся с вами
+                    Отвечаем в рабочее время. Если оставите заявку ниже, мы свяжемся с вами
                     и поможем подобрать удобный формат работы.
                 </p>
             </ScrollReveal>

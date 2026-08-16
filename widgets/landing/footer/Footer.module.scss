@@ -83,7 +83,7 @@
     }
 
     .linkspage {
-        width: 50%;
+        width: 60%;
         display: flex;
         justify-content: space-between;
         font-size: 20px;
@@ -91,17 +91,27 @@
         font-weight: 200;
 
         a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
             &:hover {
                 color: var(--gold-hover);
             }
         }
 
+        svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
         @media (max-width: 1024px) {
-            width: 70%;
+            width: 80%;
         }
 
         @media (max-width: 768px) {
-            width: 80%;
+            width: 90%;
             font-size: 18px;
         }
 
@@ -112,6 +122,11 @@
             flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
+
+            svg {
+                width: 15px;
+                height: 15px;
+            }
         }
     }
 
